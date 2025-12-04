@@ -1,0 +1,720 @@
+.services-page {
+  padding-top: 80px;
+}
+
+.services-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 50%, #8b1525 100%);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.services-header {
+  position: relative;
+  z-index: 1;
+}
+
+.services-header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.services-header p {
+  font-size: 1.35rem;
+  opacity: 0.95;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+.countries-section {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, #ffffff 0%, var(--bg-light) 100%);
+  position: relative;
+}
+
+.countries-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.country-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(196, 30, 58, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.country-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.country-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.country-card:hover .country-image {
+  transform: scale(1.1);
+}
+
+.country-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  transition: opacity 0.4s ease;
+}
+
+.country-card:hover .country-overlay {
+  opacity: 0.7;
+}
+
+.country-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary-color), var(--primary-dark));
+  transform: scaleY(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.country-card:hover::before,
+.country-card.expanded::before {
+  transform: scaleY(1);
+}
+
+.country-card:hover {
+  box-shadow: 0 12px 24px rgba(196, 30, 58, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-color: rgba(196, 30, 58, 0.3);
+  transform: translateY(-8px);
+}
+
+.country-card.expanded {
+  border-color: rgba(196, 30, 58, 0.3);
+  box-shadow: 0 12px 24px rgba(196, 30, 58, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.country-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding: 2.5rem 2.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.country-flag {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.country-card:hover .country-flag {
+  transform: scale(1.1);
+}
+
+.country-header h2 {
+  flex: 1;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+.expand-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(196, 30, 58, 0.12));
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(196, 30, 58, 0.15);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.expand-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.icon-line {
+  position: absolute;
+  background: var(--primary-color);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.icon-line-horizontal {
+  width: 18px;
+  height: 2px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-line-vertical {
+  width: 2px;
+  height: 18px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.expand-icon.expanded .icon-line-vertical {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.expand-icon.expanded .icon-line-horizontal {
+  width: 20px;
+}
+
+.country-card:hover .expand-icon {
+  background: linear-gradient(135deg, rgba(196, 30, 58, 0.15), rgba(196, 30, 58, 0.2));
+  border-color: rgba(196, 30, 58, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
+}
+
+.country-card.expanded .expand-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 16px rgba(196, 30, 58, 0.3);
+}
+
+.country-card.expanded .expand-icon::before {
+  opacity: 1;
+}
+
+.country-card.expanded .icon-line {
+  background: var(--white);
+}
+
+.country-description {
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  padding: 0 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.jobs-list {
+  margin-top: 2.5rem;
+  padding: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 2px solid rgba(196, 30, 58, 0.1);
+  position: relative;
+}
+
+.jobs-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary-color), transparent);
+}
+
+.jobs-list h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.jobs-list h3::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--primary-dark));
+  border-radius: 2px;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 1024px) {
+  .jobs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.jobs-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.jobs-carousel {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 300px;
+}
+
+.jobs-slide {
+  width: 100%;
+  display: block;
+}
+
+.job-carousel-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--white);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.job-carousel-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+  background: linear-gradient(135deg, var(--primary-dark), #8b1525);
+}
+
+.job-carousel-btn:active {
+  transform: scale(0.95);
+}
+
+.job-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.job-carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(196, 30, 58, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.job-carousel-dot:hover {
+  background: rgba(196, 30, 58, 0.5);
+  transform: scale(1.2);
+}
+
+.job-carousel-dot.active {
+  background: var(--primary-color);
+  width: 32px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(196, 30, 58, 0.4);
+}
+
+.job-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(196, 30, 58, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.job-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary-color), var(--primary-dark));
+  transform: scaleY(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.job-card:hover::before {
+  transform: scaleY(1);
+}
+
+.job-card:hover {
+  background: var(--white);
+  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px) translateX(4px);
+  border-color: rgba(196, 30, 58, 0.25);
+}
+
+.job-header {
+  margin-bottom: 1.25rem;
+}
+
+.job-header h4 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.job-type {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  border-radius: 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(196, 30, 58, 0.25);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.job-apply-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.job-type:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.35);
+  background: linear-gradient(135deg, var(--primary-dark), #8b1525);
+}
+
+.job-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.job-company {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.job-company::before {
+  content: '🏢';
+  font-size: 1.1rem;
+}
+
+.job-location {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.job-location::before {
+  content: '📍';
+  font-size: 1rem;
+}
+
+.apply-cta {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 50%, #8b1525 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.apply-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cta-box {
+  text-align: center;
+  color: var(--white);
+  max-width: 750px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cta-box p {
+  font-size: 1.35rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    padding: 4rem 0;
+  }
+
+  .services-header h1 {
+    font-size: 2.75rem;
+  }
+
+  .services-header p {
+    font-size: 1.15rem;
+  }
+
+  .countries-section {
+    padding: 4rem 0;
+  }
+
+  .countries-grid {
+    gap: 1.5rem;
+  }
+
+  .country-image-wrapper {
+    height: 180px;
+  }
+
+  .country-header {
+    padding: 2rem 2rem 0;
+  }
+
+  .country-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .country-flag {
+    font-size: 2.5rem;
+  }
+
+  .country-description {
+    padding: 0 2rem;
+  }
+
+  .expand-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .jobs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .jobs-carousel-wrapper {
+    gap: 0.5rem;
+  }
+
+  .job-carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .job-card {
+    padding: 1.75rem;
+  }
+
+  .cta-box h2 {
+    font-size: 2.25rem;
+  }
+
+  .cta-box p {
+    font-size: 1.15rem;
+  }
+
+  .apply-cta {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-hero {
+    padding: 3rem 0;
+  }
+
+  .services-header h1 {
+    font-size: 2.25rem;
+  }
+
+  .services-header p {
+    font-size: 1rem;
+  }
+
+  .countries-section {
+    padding: 3rem 0;
+  }
+
+  .country-image-wrapper {
+    height: 160px;
+  }
+
+  .country-card {
+    border-radius: 16px;
+  }
+
+  .country-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .country-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .country-flag {
+    font-size: 2rem;
+  }
+
+  .country-description {
+    padding: 0 1.5rem;
+    font-size: 1rem;
+  }
+
+  .expand-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-line-horizontal {
+    width: 16px;
+    height: 2px;
+  }
+
+  .icon-line-vertical {
+    width: 2px;
+    height: 16px;
+  }
+
+  .expand-icon.expanded .icon-line-horizontal {
+    width: 18px;
+  }
+
+  .jobs-list {
+    padding: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .jobs-list {
+    margin-top: 2rem;
+    padding-top: 2rem;
+  }
+
+  .jobs-list h3 {
+    font-size: 1.5rem;
+  }
+
+  .job-card {
+    padding: 1.5rem;
+  }
+
+  .job-header h4 {
+    font-size: 1.2rem;
+  }
+
+  .apply-cta {
+    padding: 3rem 0;
+  }
+
+  .cta-box h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta-box p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .jobs-carousel-wrapper {
+    gap: 0.25rem;
+  }
+
+  .job-carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.25rem;
+  }
+
+  .jobs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

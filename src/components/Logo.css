@@ -1,0 +1,55 @@
+.olm-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.olm-logo:hover {
+  transform: scale(1.02);
+}
+
+.logo-image {
+  height: auto;
+  width: auto;
+  max-height: 90px;
+  max-width: 375px;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive sizing for different contexts */
+.navbar .olm-logo .logo-image {
+  max-height: 75px;
+  max-width: 300px;
+}
+
+.footer .olm-logo .logo-image {
+  max-height: 80px;
+  max-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .logo-image {
+    max-height: 68px;
+    max-width: 270px;
+  }
+
+  .navbar .olm-logo .logo-image {
+    max-height: 60px;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image {
+    max-height: 53px;
+    max-width: 210px;
+  }
+
+  .navbar .olm-logo .logo-image {
+    max-height: 53px;
+    max-width: 210px;
+  }
+}
