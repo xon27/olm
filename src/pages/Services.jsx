@@ -10,7 +10,7 @@ const Services = () => {
   const countries = [
     {
       name: 'Taiwan',
-      image: '/Taiwan.jpg',
+      image: '/olm/Taiwan.jpg',
       description: 'Explore exciting career opportunities in Taiwan, known for its thriving technology and manufacturing sectors.',
       jobs: [
         { title: 'Software Engineer', company: 'Tech Corp', location: 'Taipei', type: 'Full-time' },
@@ -64,9 +64,12 @@ const Services = () => {
 
   const toggleCountry = (index) => {
     setSelectedCountry(selectedCountry === index ? null : index)
-    // Initialize slide state for this country
-    if (selectedCountry !== index && !jobSlides[index]) {
-      setJobSlides({ ...jobSlides, [index]: 0 })
+    // Initialize slide state for this country when expanding
+    if (selectedCountry !== index) {
+      setJobSlides((prev) => ({
+        ...prev,
+        [index]: prev[index] !== undefined ? prev[index] : 0,
+      }))
     }
   }
 
@@ -80,22 +83,33 @@ const Services = () => {
   }
 
   const nextJobSlide = (e, countryIndex, totalSlides) => {
+    e.preventDefault()
     e.stopPropagation()
-    setJobSlides((prev) => ({
-      ...prev,
-      [countryIndex]: ((prev[countryIndex] || 0) + 1) % totalSlides,
-    }))
+    setJobSlides((prev) => {
+      const currentSlide = prev[countryIndex] || 0
+      const nextSlide = (currentSlide + 1) % totalSlides
+      return {
+        ...prev,
+        [countryIndex]: nextSlide,
+      }
+    })
   }
 
   const prevJobSlide = (e, countryIndex, totalSlides) => {
+    e.preventDefault()
     e.stopPropagation()
-    setJobSlides((prev) => ({
-      ...prev,
-      [countryIndex]: ((prev[countryIndex] || 0) - 1 + totalSlides) % totalSlides,
-    }))
+    setJobSlides((prev) => {
+      const currentSlide = prev[countryIndex] || 0
+      const prevSlide = (currentSlide - 1 + totalSlides) % totalSlides
+      return {
+        ...prev,
+        [countryIndex]: prevSlide,
+      }
+    })
   }
 
   const goToJobSlide = (e, countryIndex, slideIndex) => {
+    e.preventDefault()
     e.stopPropagation()
     setJobSlides((prev) => ({ ...prev, [countryIndex]: slideIndex }))
   }
@@ -108,9 +122,12 @@ const Services = () => {
         <div className="container">
           <motion.div
             className="services-header"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ 
+              duration: 0.6,
+              ease: [0.4, 0, 0.2, 1]
+            }}
           >
             <h1>Job Vacancies</h1>
             <p>Explore opportunities across the globe</p>
@@ -125,9 +142,13 @@ const Services = () => {
               <motion.div
                 key={index}
                 className={`country-card ${selectedCountry === index ? 'expanded' : ''}`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.5,
+                  delay: index * 0.08,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
                 onClick={() => toggleCountry(index)}
               >
                 <div className="country-image-wrapper">
@@ -136,7 +157,9 @@ const Services = () => {
                 </div>
                 <div className="country-header">
                   <h2>{country.name}</h2>
-                  <span className={`expand-icon ${selectedCountry === index ? 'expanded' : ''}`}>
+                  <span 
+                    className={`expand-icon ${selectedCountry === index ? 'expanded' : ''}`}
+                  >
                     <span className="icon-line icon-line-horizontal"></span>
                     <span className="icon-line icon-line-vertical"></span>
                   </span>
@@ -146,15 +169,23 @@ const Services = () => {
                 {selectedCountry === index && (
                   <motion.div
                     className="jobs-list"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ opacity: 0, height: 0, y: -20 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -20 }}
+                    transition={{ 
+                      duration: 0.5,
+                      ease: [0.4, 0, 0.2, 1],
+                      opacity: { duration: 0.4 },
+                      height: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+                      y: { duration: 0.4 }
+                    }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <h3>💼 Available Positions</h3>
                     {country.jobs.length > jobsPerSlide ? (
                       <div className="jobs-carousel-wrapper" onClick={(e) => e.stopPropagation()}>
                         <button
+                          type="button"
                           className="job-carousel-btn job-carousel-btn-prev"
                           onClick={(e) => prevJobSlide(e, index, getTotalSlides(country.jobs))}
                           aria-label="Previous jobs"
@@ -166,10 +197,15 @@ const Services = () => {
                             <motion.div
                               key={`${index}-${jobSlides[index] || 0}`}
                               className="jobs-slide"
-                              initial={{ opacity: 0, x: 50 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              exit={{ opacity: 0, x: -50 }}
-                              transition={{ duration: 0.3, ease: 'easeInOut' }}
+                              initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                              animate={{ opacity: 1, x: 0, scale: 1 }}
+                              exit={{ opacity: 0, x: -30, scale: 0.95 }}
+                              transition={{ 
+                                duration: 0.4,
+                                ease: [0.4, 0, 0.2, 1],
+                                opacity: { duration: 0.3 },
+                                scale: { duration: 0.4 }
+                              }}
                             >
                               <div className="jobs-grid">
                                 {getVisibleJobs(country.jobs, index).map((job, jobIndex) => (
@@ -188,6 +224,7 @@ const Services = () => {
                                       to="/apply" 
                                       state={{ jobTitle: job.title, company: job.company, location: job.location }}
                                       className="job-type job-apply-btn"
+                                      onClick={(e) => e.stopPropagation()}
                                     >
                                       Apply Now
                                     </Link>
@@ -198,6 +235,7 @@ const Services = () => {
                           </AnimatePresence>
                         </div>
                         <button
+                          type="button"
                           className="job-carousel-btn job-carousel-btn-next"
                           onClick={(e) => nextJobSlide(e, index, getTotalSlides(country.jobs))}
                           aria-label="Next jobs"
@@ -211,9 +249,13 @@ const Services = () => {
                           <motion.div
                             key={jobIndex}
                             className="job-card"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: jobIndex * 0.1 }}
+                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            transition={{ 
+                              delay: jobIndex * 0.08,
+                              duration: 0.4,
+                              ease: [0.4, 0, 0.2, 1]
+                            }}
                           >
                             <div className="job-header">
                               <h4>{job.title}</h4>
@@ -226,6 +268,7 @@ const Services = () => {
                               to="/apply" 
                               state={{ jobTitle: job.title, company: job.company, location: job.location }}
                               className="job-type job-apply-btn"
+                              onClick={(e) => e.stopPropagation()}
                             >
                               Apply Now
                             </Link>
@@ -238,6 +281,7 @@ const Services = () => {
                         {[...Array(getTotalSlides(country.jobs))].map((_, slideIndex) => (
                           <button
                             key={slideIndex}
+                            type="button"
                             className={`job-carousel-dot ${(jobSlides[index] || 0) === slideIndex ? 'active' : ''}`}
                             onClick={(e) => goToJobSlide(e, index, slideIndex)}
                             aria-label={`Go to slide ${slideIndex + 1}`}
@@ -257,10 +301,13 @@ const Services = () => {
         <div className="container">
           <motion.div
             className="cta-box"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ 
+              duration: 0.6,
+              ease: [0.4, 0, 0.2, 1]
+            }}
           >
             <h2>Interested in Any Position?</h2>
             <p>Submit your application and resume to get started</p>
