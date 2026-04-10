@@ -22,7 +22,7 @@ const Services = () => {
     },
     {
       name: 'Japan',
-      image: '/Japan.jpg',
+      image: '/olm/Japan.jpg',
       description: 'Discover diverse job opportunities in Japan, from technology to hospitality and education.',
       jobs: [
         { title: 'IT Consultant', company: 'Digital Solutions', location: 'Tokyo', type: 'Full-time' },
@@ -32,7 +32,7 @@ const Services = () => {
     },
     {
       name: 'Cyprus',
-      image: '/Cyprus.jpg',
+      image: '/olm/Cyprus.jpg',
       description: 'Find your dream job in Cyprus, a beautiful Mediterranean island with growing business opportunities.',
       jobs: [
         { title: 'Financial Analyst', company: 'Finance Hub', location: 'Nicosia', type: 'Full-time' },
@@ -42,7 +42,7 @@ const Services = () => {
     },
     {
       name: 'New Zealand',
-      image: '/NewZealand.jpg',
+      image: '/olm/NewZealand.jpg',
       description: 'Experience work-life balance in New Zealand with opportunities across various industries.',
       jobs: [
         { title: 'Healthcare Professional', company: 'Health Services', location: 'Auckland', type: 'Full-time' },
@@ -52,7 +52,7 @@ const Services = () => {
     },
     {
       name: 'Hong Kong',
-      image: '/Hongkong.jpg',
+      image: '/olm/Hongkong.jpg',
       description: 'Join the dynamic workforce in Hong Kong, a global financial hub with endless possibilities.',
       jobs: [
         { title: 'Investment Banker', company: 'Finance Group', location: 'Central', type: 'Full-time' },
@@ -114,8 +114,8 @@ const Services = () => {
     setJobSlides((prev) => ({ ...prev, [countryIndex]: slideIndex }))
   }
 
-  // Auto-slide removed - manual navigation only
-
+  //// Auto-slide removed - manual navigation only
+ 
   return (
     <div className="services-page">
       <section className="services-hero">
