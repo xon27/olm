@@ -13,6 +13,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -24,22 +25,26 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
+    setErrorMessage('')
 
     try {
-      // Create FormData
+      // Formspree Configuration
+      // Using your Formspree endpoint
+      const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/myzrkeao'
+
+      // Prepare form data
       const formDataToSend = new FormData()
       formDataToSend.append('firstName', formData.firstName)
       formDataToSend.append('lastName', formData.lastName)
       formDataToSend.append('email', formData.email)
       formDataToSend.append('phone', formData.phone)
       formDataToSend.append('message', formData.message || 'No message provided')
-      formDataToSend.append('_to', 'dixoncarnacete13@gmail.com')
-      formDataToSend.append('_subject', 'Contact Form Submission')
-
-      // Using Formspree - Replace with your Formspree endpoint
-      // Get free endpoint at https://formspree.io/
-      const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID'
       
+      // Set recipient email (works on free plan)
+      formDataToSend.append('_to', 'dixoncarnacete13@gmail.com')
+      formDataToSend.append('_subject', 'Contact Form Submission from ' + formData.firstName + ' ' + formData.lastName)
+
+      // Send email using Formspree
       const response = await fetch(formspreeEndpoint, {
         method: 'POST',
         body: formDataToSend,
@@ -48,8 +53,10 @@ const Contact = () => {
         }
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        throw new Error('Failed to send message')
+        throw new Error(data.error || 'Failed to send message')
       }
       
       setIsSubmitting(false)
@@ -69,9 +76,22 @@ const Contact = () => {
       console.error('Error sending email:', error)
       setIsSubmitting(false)
       setSubmitStatus('error')
+      
+      // Set user-friendly error message
+      let userMessage = 'Sorry, there was an error sending your message. Please try again.'
+      
+      if (error.message && error.message.includes('not configured')) {
+        userMessage = error.message
+      } else if (error.message) {
+        userMessage = `Error: ${error.message}`
+      }
+      
+      setErrorMessage(userMessage)
+      
       setTimeout(() => {
         setSubmitStatus(null)
-      }, 5000)
+        setErrorMessage('')
+      }, 8000) // Show error for 8 seconds
     }
   }
 
@@ -215,7 +235,7 @@ const Contact = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
-                    ✗ Sorry, there was an error sending your message. Please try again.
+                    ✗ {errorMessage || 'Sorry, there was an error sending your message. Please try again.'}
                   </motion.div>
                 )}
 

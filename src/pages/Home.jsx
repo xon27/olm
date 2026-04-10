@@ -256,7 +256,7 @@ const Home = React.memo(() => {
               <div className="news-images-wrapper">
                 <div className="news-image-wrapper">
                   <img 
-                    src="/news/imgi_32_caring-nurse-providing-compassionate-assistance-to-smiling-elderly-woman-in-a-bright-room.jpg" 
+                    src="/olm/news/imgi_32_caring-nurse-providing-compassionate-assistance-to-smiling-elderly-woman-in-a-bright-room.jpg" 
                     alt="Domestic Helper Position in Hong Kong" 
                     className="news-image"
                     loading="lazy"
@@ -264,7 +264,7 @@ const Home = React.memo(() => {
                 </div>
                 <div className="news-image-wrapper">
                   <img 
-                    src="/news/imgi_35_home-care-for-seniors.jpg" 
+                    src="/olm/news/imgi_35_home-care-for-seniors.jpg" 
                     alt="Domestic Helper Position in Hong Kong" 
                     className="news-image"
                     loading="lazy"

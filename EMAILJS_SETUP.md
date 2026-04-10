@@ -49,21 +49,32 @@ To enable email functionality, you need to set up EmailJS:
    - Go to Account > API Keys
    - Copy your Public Key
 
-5. **Update the code**:
-   - In `src/pages/Contact.jsx`, replace:
-     - `service_your_service_id` with your Service ID
-     - `template_contact` with your Contact template ID
-     - `your_public_key` with your Public Key
+5. **Configure Environment Variables**:
    
-   - In `src/pages/Apply.jsx`, replace:
-     - `service_your_service_id` with your Service ID
-     - `template_application` with your Application template ID
-     - `your_public_key` with your Public Key
+   Create a `.env` file in the root directory of your project with:
+   ```
+   VITE_EMAILJS_SERVICE_ID=your_service_id_here
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
+   ```
+   
+   Replace the placeholder values with your actual EmailJS credentials.
+   
+   **Note**: The Contact page is now configured to use EmailJS automatically. Just set up your environment variables and you're ready to go!
 
-6. **Install EmailJS package**:
+6. **Restart your development server**:
+   After creating the `.env` file, you must restart your Vite dev server for the environment variables to load:
+   ```bash
+   # Stop the server (Ctrl+C) and restart it
+   npm run dev
+   ```
+
+7. **Install EmailJS package** (if not already installed):
    ```bash
    npm install @emailjs/browser
    ```
+   
+   The package is already installed in this project, so you can skip this step.
 
 ## Note:
 - The recipient email is set to: dixoncarnacete13@gmail.com

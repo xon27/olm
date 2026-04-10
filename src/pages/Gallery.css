@@ -1,3 +1,9 @@
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .gallery-page {
   min-height: 100vh;
   padding-top: 80px;
@@ -88,11 +94,19 @@
   background: var(--bg-light);
 }
 
-.photo-item img {
+.photo-item img,
+.photo-item-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.photo-item-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .photo-item:hover img {

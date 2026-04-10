@@ -26,10 +26,26 @@ body {
   color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  position: relative;
 }
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }
 
 code {
@@ -50,5 +66,38 @@ button {
 
 input, textarea, select {
   font-family: inherit;
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Global container class */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+/* Ensure all page containers have proper width constraints */
+[class*="-page"],
+.home {
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
 }
 

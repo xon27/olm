@@ -1,6 +1,69 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import './Gallery.css'
+
+// Lazy image component with intersection observer
+const LazyImage = React.memo(({ src, alt, className, onClick }) => {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const imgRef = React.useRef(null)
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '50px' }
+    )
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current)
+    }
+
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current)
+      }
+    }
+  }, [])
+
+  return (
+    <div ref={imgRef} className={className} onClick={onClick} style={{ position: 'relative', width: '100%', height: '100%' }}>
+      {isInView && (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          style={{ 
+            opacity: isLoaded ? 1 : 0, 
+            transition: 'opacity 0.3s',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      )}
+      {!isLoaded && isInView && (
+        <div style={{ 
+          position: 'absolute', 
+          inset: 0, 
+          background: 'var(--bg-light)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <div style={{ width: '20px', height: '20px', border: '2px solid var(--primary-color)', borderTop: 'none', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }}></div>
+        </div>
+      )}
+    </div>
+  )
+})
+
+LazyImage.displayName = 'LazyImage'
 
 const Gallery = () => {
   const [selectedEvent, setSelectedEvent] = useState(null)
@@ -306,12 +369,16 @@ const Gallery = () => {
                         className="photo-item"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: '-50px' }}
                         transition={{ duration: 0.4, delay: photoIndex * 0.05 }}
                         whileHover={{ scale: 1.05, zIndex: 10 }}
                         onClick={() => openImageModal(photo)}
                       >
-                        <img src={photo.src} alt={photo.alt} />
+                        <LazyImage 
+                          src={photo.src} 
+                          alt={photo.alt}
+                          className="photo-item-img"
+                        />
                         <div className="photo-overlay">
                           <svg className="view-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -359,7 +426,7 @@ const Gallery = () => {
                   className="modal-photo-item"
                   onClick={() => openImageModal(photo)}
                 >
-                  <img src={photo.src} alt={photo.alt} />
+                  <img src={photo.src} alt={photo.alt} loading="lazy" />
                 </div>
               ))}
             </div>
@@ -378,7 +445,7 @@ const Gallery = () => {
         >
           <button className="lightbox-close" onClick={closeImageModal}>×</button>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={selectedImage.src} alt={selectedImage.alt} />
+            <img src={selectedImage.src} alt={selectedImage.alt} loading="eager" />
           </div>
         </motion.div>
       )}
