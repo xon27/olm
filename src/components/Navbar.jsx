@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import Logo from '/olm/Logo'
+import Logo from './Logo'
 import './Navbar.css'
 
 const Navbar = React.memo(() => {
