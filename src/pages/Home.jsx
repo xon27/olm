@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Home.css'
 
-const Home = () => {
+const Home = React.memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const containerVariants = {
@@ -144,10 +144,10 @@ const Home = () => {
     setTimeout(() => setIsAutoPlaying(true), 10000) // Resume auto-play after 10 seconds
   }
 
-  const getVisibleTestimonials = () => {
+  const getVisibleTestimonials = useMemo(() => {
     const start = currentSlide * slidesToShow
     return testimonials.slice(start, start + slidesToShow)
-  }
+  }, [currentSlide, slidesToShow])
 
   return (
     <div className="home">
@@ -156,45 +156,9 @@ const Home = () => {
         <div className="hero-background">
           <div className="gradient-overlay"></div>
           <div className="animated-shapes">
-            <motion.div
-              className="shape shape-1"
-              animate={{
-                x: [0, 100, 0],
-                y: [0, 50, 0],
-                rotate: [0, 180, 360],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-            <motion.div
-              className="shape shape-2"
-              animate={{
-                x: [0, -80, 0],
-                y: [0, -60, 0],
-                rotate: [360, 180, 0],
-              }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-            <motion.div
-              className="shape shape-3"
-              animate={{
-                x: [0, 60, 0],
-                y: [0, -40, 0],
-                rotate: [0, -180, -360],
-              }}
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
+            <div className="shape shape-1" />
+            <div className="shape shape-2" />
+            <div className="shape shape-3" />
           </div>
         </div>
 
@@ -245,7 +209,7 @@ const Home = () => {
             className="section-title"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
             Why Choose Us
@@ -254,7 +218,7 @@ const Home = () => {
             className="features-content"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p>
@@ -274,7 +238,7 @@ const Home = () => {
             className="news-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
             <h2>Latest News</h2>
@@ -284,7 +248,7 @@ const Home = () => {
             className="news-content-wrapper"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="news-badge">New Opportunity</div>
@@ -295,6 +259,7 @@ const Home = () => {
                     src="/news/imgi_32_caring-nurse-providing-compassionate-assistance-to-smiling-elderly-woman-in-a-bright-room.jpg" 
                     alt="Domestic Helper Position in Hong Kong" 
                     className="news-image"
+                    loading="lazy"
                   />
                 </div>
                 <div className="news-image-wrapper">
@@ -302,6 +267,7 @@ const Home = () => {
                     src="/news/imgi_35_home-care-for-seniors.jpg" 
                     alt="Domestic Helper Position in Hong Kong" 
                     className="news-image"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -353,7 +319,7 @@ const Home = () => {
             className="section-title"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
             Here's What Our Clients Say About Us
@@ -373,7 +339,7 @@ const Home = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <div className="testimonials-grid">
-                    {getVisibleTestimonials().map((testimonial, index) => (
+                    {getVisibleTestimonials.map((testimonial, index) => (
                       <motion.div
                         key={`${currentSlide}-${index}`}
                         className="testimonial-card"
@@ -426,7 +392,7 @@ const Home = () => {
             className="map-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
             <h2>Find Us</h2>
@@ -436,7 +402,7 @@ const Home = () => {
             className="map-wrapper"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="map-container">
@@ -476,7 +442,7 @@ const Home = () => {
             className="cta-content"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
             <h2>Ready to Start Your Journey?</h2>
@@ -489,7 +455,9 @@ const Home = () => {
       </section>
     </div>
   )
-}
+})
+
+Home.displayName = 'Home'
 
 export default Home
 
