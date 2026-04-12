@@ -1,11 +1,29 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Home.css'
 
+const HERO_SLIDES = [
+  { src: '/olm/hero/hero1.png', alt: 'OLM international placements' },
+  { src: '/olm/hero/hero2.png', alt: 'Skilled operators' },
+  { src: '/olm/hero/hero3.png', alt: 'Welding and trades' },
+  { src: '/olm/hero/hero4.png', alt: 'Factory and industry' },
+  { src: '/olm/hero/hero5.png', alt: 'Domestic helpers and caregivers' },
+]
+
 const Home = React.memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [heroIndex, setHeroIndex] = useState(0)
+  const [slidesToShow, setSlidesToShow] = useState(3)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHeroIndex((i) => (i + 1) % HERO_SLIDES.length)
+    }, 5000)
+    return () => clearInterval(id)
+  }, [])
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -45,7 +63,7 @@ const Home = React.memo(() => {
       name: 'Maria Santos',
       location: 'Taiwan',
       position: 'Software Engineer',
-      image: '👩‍💼',
+      avatarSrc: '/olm/about/img1.jpg',
       quote: 'OLM International helped me find my dream job in Taiwan. Their team was professional, supportive, and made the entire process smooth. I couldn\'t be happier!',
       rating: 5,
     },
@@ -53,7 +71,7 @@ const Home = React.memo(() => {
       name: 'John Chen',
       location: 'Japan',
       position: 'IT Consultant',
-      image: '👨‍💻',
+      avatarSrc: '/olm/about/img2.jpg',
       quote: 'The best recruitment agency I\'ve worked with. They understood my career goals and matched me with the perfect opportunity in Tokyo. Highly recommended!',
       rating: 5,
     },
@@ -61,7 +79,7 @@ const Home = React.memo(() => {
       name: 'Sarah Johnson',
       location: 'Cyprus',
       position: 'Financial Analyst',
-      image: '👩‍💼',
+      avatarSrc: '/olm/about/img3.jpg',
       quote: 'From application to relocation, OLM International guided me every step of the way. Their expertise in international placements is unmatched.',
       rating: 5,
     },
@@ -69,7 +87,7 @@ const Home = React.memo(() => {
       name: 'David Kim',
       location: 'New Zealand',
       position: 'Healthcare Professional',
-      image: '👨‍⚕️',
+      avatarSrc: '/olm/about/img4.jpg',
       quote: 'I was skeptical at first, but OLM International exceeded all my expectations. They found me a position that perfectly matches my skills and lifestyle.',
       rating: 5,
     },
@@ -77,7 +95,7 @@ const Home = React.memo(() => {
       name: 'Lisa Wong',
       location: 'Hong Kong',
       position: 'Marketing Manager',
-      image: '👩‍💼',
+      avatarSrc: '/olm/about/img5.jpg',
       quote: 'Professional, efficient, and caring. The team at OLM International truly cares about their clients\' success. Thank you for changing my career!',
       rating: 5,
     },
@@ -85,13 +103,11 @@ const Home = React.memo(() => {
       name: 'Michael Brown',
       location: 'Japan',
       position: 'Language Instructor',
-      image: '👨‍🏫',
+      avatarSrc: '/olm/about/img1.jpg',
       quote: 'The support I received was incredible. OLM International didn\'t just find me a job, they helped me build a new life in Japan. Forever grateful!',
       rating: 5,
     },
   ]
-
-  const [slidesToShow, setSlidesToShow] = useState(3)
 
   useEffect(() => {
     const handleResize = () => {
@@ -154,12 +170,21 @@ const Home = React.memo(() => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-background">
-          <div className="gradient-overlay"></div>
-          <div className="animated-shapes">
-            <div className="shape shape-1" />
-            <div className="shape shape-2" />
-            <div className="shape shape-3" />
+          <div className="hero-carousel" aria-hidden="true">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={HERO_SLIDES[heroIndex].src}
+                className="hero-carousel__img"
+                src={HERO_SLIDES[heroIndex].src}
+                alt={HERO_SLIDES[heroIndex].alt}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.45 }}
+              />
+            </AnimatePresence>
           </div>
+          <div className="gradient-overlay" />
         </div>
 
         <motion.div
@@ -349,7 +374,9 @@ const Home = React.memo(() => {
                         whileHover={{ y: -5, transition: { duration: 0.3 } }}
                       >
                         <div className="testimonial-header">
-                          <div className="testimonial-avatar">{testimonial.image}</div>
+                          <div className="testimonial-avatar">
+                            <img src={testimonial.avatarSrc} alt="" />
+                          </div>
                           <div className="testimonial-info">
                             <h4>{testimonial.name}</h4>
                             <p className="testimonial-position">{testimonial.position}</p>

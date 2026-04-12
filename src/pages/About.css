@@ -132,6 +132,21 @@
   align-items: center;
 }
 
+.image-wrapper {
+  width: 100%;
+  max-width: 520px;
+}
+
+.image-wrapper img,
+#story-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+}
+
 .image-placeholder {
   width: 100%;
   max-width: 400px;
@@ -183,6 +198,15 @@
 .value-icon {
   font-size: 4rem;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.value-icon img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
 }
 
 .value-card h3 {

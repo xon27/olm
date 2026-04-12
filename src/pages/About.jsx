@@ -12,17 +12,17 @@ const About = () => {
 
   const values = [
     {
-      icon: '🎯',
+      imageSrc: '/olm/about/mission.png',
       title: 'Our Mission',
       description: 'To connect talented individuals with exceptional opportunities worldwide, fostering career growth and personal development.',
     },
     {
-      icon: '👁️',
+      imageSrc: '/olm/about/vision.png',
       title: 'Our Vision',
       description: 'To be the leading global recruitment platform, recognized for excellence, integrity, and transformative career solutions.',
     },
     {
-      icon: '💎',
+      imageSrc: '/olm/about/value.png',
       title: 'Our Values',
       description: 'We are committed to transparency, professionalism, and building lasting relationships with both candidates and employers.',
     },
@@ -101,8 +101,8 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="image-placeholder">
-                <span>👥</span>
+              <div className="image-wrapper">
+                <img id="story-image" src="/olm/gallery/imgi_27_BNG-3-680x460.jpg" alt="Our Team" />
               </div>
             </motion.div>
           </div>
@@ -131,7 +131,9 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="value-icon">{value.icon}</div>
+                <div className="value-icon">
+                  <img src={value.imageSrc} alt="" width={96} height={96} />
+                </div>
                 <h3>{value.title}</h3>
                 <p>{value.description}</p>
               </motion.div>

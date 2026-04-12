@@ -23,6 +23,24 @@
   z-index: 1;
 }
 
+.hero-carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-carousel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gradient-overlay {
+  z-index: 1;
+}
+
 .gradient-overlay {
   position: absolute;
   top: 0;
@@ -411,7 +429,6 @@
 }
 
 .testimonial-avatar {
-  font-size: 3rem;
   width: 60px;
   height: 60px;
   display: flex;
@@ -420,6 +437,14 @@
   background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(196, 30, 58, 0.15));
   border-radius: 50%;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .testimonial-info h4 {
@@ -765,7 +790,6 @@
   }
 
   .testimonial-avatar {
-    font-size: 2.5rem;
     width: 50px;
     height: 50px;
   }

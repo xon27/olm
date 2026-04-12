@@ -7,7 +7,10 @@ const LazyImage = React.memo(({ src, alt, className, onClick }) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const imgRef = React.useRef(null)
+ 
 
+
+  
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -75,7 +78,7 @@ const Gallery = () => {
       year: '2024',
       events: [
         {
-          title: 'Liquimar Forum & Christmas Party',
+          title: 'Christmas Party',
           date: 'December 2024',
           photos: [
             { id: 1, src: '/olm/gallery/imgi_3_BNG-05975-680x460.jpg', alt: 'Liquimar Forum & Christmas Party' },
@@ -84,7 +87,7 @@ const Gallery = () => {
           ],
         },
         {
-          title: 'Sea Pioneer Forum',
+          title: '2024 Forum',
           date: '2024',
           photos: [
             { id: 1, src: '/olm/gallery/imgi_28_BNG2-7867-scaled.jpg', alt: 'Sea Pioneer Forum' },
@@ -107,7 +110,7 @@ const Gallery = () => {
       year: '2023',
       events: [
         {
-          title: 'Andriaki Christmas Party',
+          title: 'Christmas Party',
           date: 'November 2023',
           photos: [
             { id: 1, src: '/olm/gallery/imgi_12_BNG-03522-680x460.jpg', alt: 'Andriaki Christmas Party' },
@@ -116,7 +119,7 @@ const Gallery = () => {
           ],
         },
         {
-          title: 'Andriaki Visit',
+          title: '2023 Visit',
           date: 'April 2023',
           photos: [
             { id: 1, src: '/olm/gallery/imgi_40_received_1642539809492615-680x460.jpg', alt: 'Andriaki Visit' },
@@ -152,7 +155,7 @@ const Gallery = () => {
       year: '2019',
       events: [
         {
-          title: 'Andriaki Forum',
+          title: '2019 Forum',
           date: '2019',
           photos: [
             { id: 1, src: '/olm/gallery/imgi_56_50717473988_53dde8c80b_b-680x460.jpg', alt: 'Andriaki Forum' },
@@ -176,7 +179,7 @@ const Gallery = () => {
       year: '2018',
       events: [
         {
-          title: 'Sea Pioneer Forum',
+          title: '2018 Forum',
           date: 'June 2018',
           photos: [
             { id: 1, src: '/olm/gallery/imgi_63_28214435477_cb35e63de3_h-680x460.jpg', alt: 'Sea Pioneer Forum' },
