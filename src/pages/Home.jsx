@@ -4,14 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import LocationIcon from '../components/LocationIcon'
 import PhoneIcon from '../components/PhoneIcon'
 import EmailIcon from '../components/EmailIcon'
+import { asset } from '../utils/assets'
 import './Home.css'
 
 const HERO_SLIDES = [
-  { src: '/olm/hero/hero1.png', alt: 'OLM international placements' },
-  { src: '/olm/hero/hero2.png', alt: 'Skilled operators' },
-  { src: '/olm/hero/hero3.png', alt: 'Welding and trades' },
-  { src: '/olm/hero/hero4.png', alt: 'Factory and industry' },
-  { src: '/olm/hero/hero5.png', alt: 'Domestic helpers and caregivers' },
+  { src: asset('hero/hero1.png'), alt: 'OLM international placements' },
+  { src: asset('hero/hero2.png'), alt: 'Skilled operators' },
+  { src: asset('hero/hero3.png'), alt: 'Welding and trades' },
+  { src: asset('hero/hero4.png'), alt: 'Factory and industry' },
+  { src: asset('hero/hero5.png'), alt: 'Domestic helpers and caregivers' },
 ]
 
 
@@ -75,7 +76,7 @@ const Home = React.memo(() => {
       name: 'Maria Santos',
       location: 'Taiwan',
       position: 'Software Engineer',
-      avatarSrc: '/olm/about/img1.jpg',
+      avatarSrc: asset('about/img1.jpg'),
       quote: 'OLM International helped me find my dream job in Taiwan. Their team was professional, supportive, and made the entire process smooth. I couldn\'t be happier!',
       rating: 5,
     },
@@ -83,7 +84,7 @@ const Home = React.memo(() => {
       name: 'John Chen',
       location: 'Japan',
       position: 'IT Consultant',
-      avatarSrc: '/olm/about/img2.jpg',
+      avatarSrc: asset('about/img2.jpg'),
       quote: 'The best recruitment agency I\'ve worked with. They understood my career goals and matched me with the perfect opportunity in Tokyo. Highly recommended!',
       rating: 5,
     },
@@ -91,7 +92,7 @@ const Home = React.memo(() => {
       name: 'Sarah Johnson',
       location: 'Cyprus',
       position: 'Financial Analyst',
-      avatarSrc: '/olm/about/img3.jpg',
+      avatarSrc: asset('about/img3.jpg'),
       quote: 'From application to relocation, OLM International guided me every step of the way. Their expertise in international placements is unmatched.',
       rating: 5,
     },
@@ -99,7 +100,7 @@ const Home = React.memo(() => {
       name: 'Lisa Wong',
       location: 'Hong Kong',
       position: 'Marketing Manager',
-      avatarSrc: '/olm/about/img5.jpg',
+      avatarSrc: asset('about/img5.jpg'),
       quote: 'Professional, efficient, and caring. The team at OLM International truly cares about their clients\' success. Thank you for changing my career!',
       rating: 5,
     },
@@ -107,7 +108,7 @@ const Home = React.memo(() => {
       name: 'Michael Brown',
       location: 'Japan',
       position: 'Language Instructor',
-      avatarSrc: '/olm/about/img1.jpg',
+      avatarSrc: asset('about/img1.jpg'),
       quote: 'The support I received was incredible. OLM International didn\'t just find me a job, they helped me build a new life in Japan. Forever grateful!',
       rating: 5,
     },
@@ -261,86 +262,7 @@ const Home = React.memo(() => {
         </div>
       </section>
 
-      {/* News Section */}
-      <section className="news-section">
-        <div className="container">
-          <motion.div
-            className="news-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2>Latest News</h2>
-            <p>Stay updated with our latest opportunities</p>
-          </motion.div>
-          <motion.div
-            className="news-content-wrapper"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="news-badge">New Opportunity</div>
-            <div className="news-content">
-              <div className="news-images-wrapper">
-                <div className="news-image-wrapper">
-                  <img 
-                    src="/olm/news/imgi_32_caring-nurse-providing-compassionate-assistance-to-smiling-elderly-woman-in-a-bright-room.jpg" 
-                    alt="Domestic Helper Position in Hong Kong" 
-                    className="news-image"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="news-image-wrapper">
-                  <img 
-                    src="/olm/news/imgi_35_home-care-for-seniors.jpg" 
-                    alt="Domestic Helper Position in Hong Kong" 
-                    className="news-image"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="news-text">
-                <div className="news-header-inline">
-                  <div>
-                    <h3>Hiring: Domestic Helper Positions in Hong Kong</h3>
-                    <p className="news-date">Posted: January 2025</p>
-                  </div>
-                </div>
-                <p className="news-description">
-                  We are currently accepting applications for domestic helper positions in Hong Kong. 
-                  This is an excellent opportunity for individuals seeking employment abroad with competitive 
-                  salary packages, comprehensive benefits, and a supportive work environment. 
-                  Successful candidates will work with reputable employers in Hong Kong and receive full 
-                  assistance with visa processing and relocation.
-                </p>
-                <div className="news-highlights">
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Competitive salary package</span>
-                  </div>
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Full visa and work permit assistance</span>
-                  </div>
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Accommodation provided</span>
-                  </div>
-                  <div className="highlight-item">
-                    <span className="highlight-icon">✓</span>
-                    <span>Medical insurance coverage</span>
-                  </div>
-                </div>
-                <Link to="/services" className="news-btn">
-                  View Details & Apply
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+    
 
       {/* Testimonials Section */}
       <section className="testimonials">

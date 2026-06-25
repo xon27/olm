@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import LocationIcon from '../components/LocationIcon'
+import { asset } from '../utils/assets'
 import './About.css'
 
 const About = () => {
@@ -13,12 +14,12 @@ const About = () => {
 
   const values = [
     {
-      imageSrc: '/olm/about/mission.png',
+      imageSrc: asset('about/mission.png'),
       title: 'Our Mission',
       description: 'To provide ethical, efficient, and high-quality recruitment services by connecting qualified Filipino workers with reputable international employers. We are committed to empowering individuals through meaningful overseas employment opportunities while ensuring professionalism, integrity, and compliance with industry standards. Through dedicated support and responsible recruitment practices, we strive to contribute to the growth and success of both our workers and employer partners..',
     },
     {
-      imageSrc: '/olm/about/vision.png',
+      imageSrc: asset('about/vision.png'),
       title: 'Our Vision',
       description: 'To be a leading and trusted international recruitment agency recognized for excellence, integrity, and commitment to the welfare of Filipino workers. We envision a future where every qualified Filipino has access to legitimate global employment opportunities, enabling them to achieve personal growth, financial stability, and a better quality of life for themselves and their families.',
     },
@@ -107,7 +108,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="image-wrapper">
-                <img id="story-image" src="/olm/olmgallery/16eef158-37d3-44bc-9448-d25fb8c6ea5a.jpg" alt="Our Team" />
+                <img id="story-image" src={asset('olmgallery/16eef158-37d3-44bc-9448-d25fb8c6ea5a.jpg')} alt="Our Team" />
               </div>
             </motion.div>
           </div>

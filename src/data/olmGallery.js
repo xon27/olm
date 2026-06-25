@@ -1,3 +1,5 @@
+import { asset } from '../utils/assets'
+
 const OLM_GALLERY_FILES = [
   '091697e7-4dd3-468c-b6ed-c90b5c4b3055.jpg',
   '0a502c5e-beb3-48da-83de-0a29d657d907.jpg',
@@ -33,8 +35,8 @@ const OLM_GALLERY_FILES = [
 
 export const galleryPhotos = OLM_GALLERY_FILES.map((file, index) => ({
   id: index + 1,
-  src: `/olm/olmgallery/${file}`,
+  src: asset(`olmgallery/${file}`),
   alt: 'OLM gallery photo',
 }))
 
-export const OLM_LOGO_SRC = '/olm/olm-logo.png'
+export const OLM_LOGO_SRC = asset('olm-logo.png')

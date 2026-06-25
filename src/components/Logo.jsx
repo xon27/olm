@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { asset } from '../utils/assets'
 import './Logo.css'
 
 const LOGO_SRC = {
-  default: '/olm/olm-logo.png',
-  footer: '/olm/olm-footer.jpg',
+  default: asset('olm-logo.png'),
+  footer: asset('olm-footer.jpg'),
 }
 
 const Logo = ({ variant = 'default' }) => {

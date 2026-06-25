@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import LocationIcon from '../components/LocationIcon'
+import { asset } from '../utils/assets'
 import './Services.css'
 
 const Services = () => {
@@ -11,7 +12,7 @@ const Services = () => {
   const countries = [
     {
       name: 'Taiwan',
-      image: '/olm/Taiwan.jpg',
+      image: asset('Taiwan.jpg'),
       description: 'Explore exciting career opportunities in Taiwan, known for its thriving technology and manufacturing sectors.',
       jobs: [
         { title: 'Software Engineer', company: 'Tech Corp', location: 'Taipei', type: 'Full-time' },
@@ -23,7 +24,7 @@ const Services = () => {
     },
     {
       name: 'Japan',
-      image: '/olm/Japan.jpg',
+      image: asset('Japan.jpg'),
       description: 'Discover diverse job opportunities in Japan, from technology to hospitality and education.',
       jobs: [
         { title: 'IT Consultant', company: 'Digital Solutions', location: 'Tokyo', type: 'Full-time' },
@@ -33,7 +34,7 @@ const Services = () => {
     },
     {
       name: 'Cyprus',
-      image: '/olm/Cyprus.jpg',
+      image: asset('Cyprus.jpg'),
       description: 'Find your dream job in Cyprus, a beautiful Mediterranean island with growing business opportunities.',
       jobs: [
         { title: 'Financial Analyst', company: 'Finance Hub', location: 'Nicosia', type: 'Full-time' },
@@ -43,7 +44,7 @@ const Services = () => {
     },
     {
       name: 'Hong Kong',
-      image: '/olm/Hongkong.jpg',
+      image: asset('Hongkong.jpg'),
       description: 'Join the dynamic workforce in Hong Kong, a global financial hub with endless possibilities.',
       jobs: [
         { title: 'Investment Banker', company: 'Finance Group', location: 'Central', type: 'Full-time' },
