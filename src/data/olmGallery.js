@@ -1,6 +1,8 @@
 import { asset } from '../utils/assets'
 
 const OLM_GALLERY_FILES = [
+  '5100c837-2ddd-4b12-95bf-5fcfc7c45086.jpg',
+  '7a6811e3-99a3-4a55-b1da-0dba1c703ad4.jpg',
   '091697e7-4dd3-468c-b6ed-c90b5c4b3055.jpg',
   '0a502c5e-beb3-48da-83de-0a29d657d907.jpg',
   '0d34a098-5a05-4651-ad32-9e821f53abf9.jpg',
