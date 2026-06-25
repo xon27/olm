@@ -44,7 +44,7 @@ const Contact = () => {
       formDataToSend.append('message', formData.message || 'No message provided')
       
       // Set recipient email (works on free plan)
-      formDataToSend.append('_to', 'olm.joc168@gmail.com')
+      formDataToSend.append('_to', 'olm.jpc168@gmail.com')
       formDataToSend.append('_subject', 'Contact Form Submission from ' + formData.firstName + ' ' + formData.lastName)
 
       // Send email using Formspree
@@ -99,7 +99,7 @@ const Contact = () => {
   }
 
   const contactInfo = [
-    { icon: <EmailIcon className="email-icon" />, label: 'Email', value: 'olm.joc168@gmail.com' },
+    { icon: <EmailIcon className="email-icon" />, label: 'Email', value: 'olm.jpc168@gmail.com' },
     { icon: <PhoneIcon className="phone-icon" />, label: 'Phone', value: '09175090089' },
     { icon: <LocationIcon className="location-icon" />, label: 'Address', value: 'G/F Vermont Tower J. Nakpil St., cor. Vasquez St., Brgy. 696 Malate Manila' },
   ]

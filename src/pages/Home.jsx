@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import gsap from 'gsap'
 import LocationIcon from '../components/LocationIcon'
-import PhoneIcon from '../components/PhoneIcon'
-import EmailIcon from '../components/EmailIcon'
 import { asset } from '../utils/assets'
 import './Home.css'
 
@@ -29,6 +28,155 @@ const Home = React.memo(() => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [heroIndex, setHeroIndex] = useState(0)
   const [slidesToShow, setSlidesToShow] = useState(3)
+  const bbemStageRef = useRef(null)
+
+  const BBEM_QUOTE = 'Gulat ka No!'
+  const BBEM_REVEAL_DELAY = 2
+
+  useEffect(() => {
+    const stage = bbemStageRef.current
+    if (!stage) return
+
+    const img = stage.querySelector('.bbem-image')
+    const bubble = stage.querySelector('.bbem-bubble')
+    const chars = stage.querySelectorAll('.bbem-quote-char')
+    if (!img || !bubble || !chars.length) return
+
+    const ctx = gsap.context(() => {
+      gsap.set(img, { opacity: 0 })
+      gsap.set(bubble, { opacity: 0, scale: 0.4 })
+      gsap.set(chars, {
+        opacity: 0,
+        y: 18,
+        rotate: (i) => gsap.utils.random(-18, 18),
+        scale: 0.4,
+      })
+
+      gsap.timeline({ delay: BBEM_REVEAL_DELAY }).to(img, {
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+
+      const danceTl = gsap.timeline({
+        repeat: -1,
+        delay: BBEM_REVEAL_DELAY,
+        defaults: { ease: 'sine.inOut' },
+      })
+        .to(img, {
+          duration: 0.4,
+          rotation: -12,
+          x: -18,
+          y: 4,
+          scale: 1.03,
+          transformOrigin: '50% 92%',
+        })
+        .to(img, {
+          duration: 0.45,
+          rotation: 14,
+          x: 22,
+          y: -22,
+          scale: 1.06,
+        })
+        .to(img, {
+          duration: 0.35,
+          rotation: -8,
+          x: -10,
+          y: -8,
+          scale: 1.02,
+        })
+        .to(img, {
+          duration: 0.4,
+          rotation: 10,
+          x: 16,
+          y: -16,
+          scale: 1.05,
+        })
+        .to(img, {
+          duration: 0.35,
+          rotation: -5,
+          x: -6,
+          y: 2,
+          scale: 1.01,
+        })
+        .to(img, {
+          duration: 0.5,
+          rotation: 0,
+          x: 0,
+          y: 0,
+          scale: 1,
+          ease: 'power2.out',
+        })
+        .to(img, { duration: 0.35 })
+
+      const speakTl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 0.8,
+        delay: BBEM_REVEAL_DELAY,
+      })
+      speakTl
+        .to(bubble, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.45,
+          ease: 'back.out(2.5)',
+        })
+        .to(
+          chars,
+          {
+            opacity: 1,
+            y: 0,
+            rotate: 0,
+            scale: 1,
+            duration: 0.35,
+            stagger: 0.065,
+            ease: 'back.out(2)',
+          },
+          '-=0.15',
+        )
+        .to(bubble, {
+          keyframes: [
+            { rotation: -4, duration: 0.08 },
+            { rotation: 4, duration: 0.08 },
+            { rotation: -3, duration: 0.08 },
+            { rotation: 3, duration: 0.08 },
+            { rotation: 0, duration: 0.08 },
+          ],
+          transformOrigin: 'bottom center',
+        })
+        .to(
+          chars,
+          {
+            keyframes: [
+              { y: -6, scale: 1.2, duration: 0.12 },
+              { y: 0, scale: 1, duration: 0.18, ease: 'bounce.out' },
+            ],
+            stagger: 0.04,
+          },
+          '<0.1',
+        )
+        .to({}, { duration: 1.4 })
+        .to(bubble, {
+          opacity: 0,
+          scale: 0.5,
+          duration: 0.35,
+          ease: 'power2.in',
+        })
+        .to(
+          chars,
+          {
+            opacity: 0,
+            y: -12,
+            scale: 0.6,
+            duration: 0.25,
+            stagger: 0.025,
+          },
+          '<',
+        )
+    }, stage)
+
+    return () => ctx.revert()
+  }, [])
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -203,7 +351,7 @@ const Home = React.memo(() => {
             <span className="gradient-text"> Job Placement Corporation</span>
           </motion.h1>
           <motion.p className="hero-subtitle" variants={itemVariants}>
-            Connecting talented professionals with exceptional opportunities across Taiwan, Japan, Cyprus, and Hong Kong.
+            Connecting talented professionals with exceptional opportunities across Hong Kong, Cyprus, Malaysia, Japan, Taiwan, Greece, and Brazil.
             Your trusted partner in building a successful career abroad.
           </motion.p>
           <motion.div className="hero-buttons" variants={itemVariants}>
@@ -239,7 +387,7 @@ const Home = React.memo(() => {
             className="section-title"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
             Why Choose OLM International?
@@ -249,10 +397,10 @@ const Home = React.memo(() => {
               <motion.div
                 key={index}
                 className="team-card"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
@@ -262,82 +410,24 @@ const Home = React.memo(() => {
         </div>
       </section>
 
-    
-
-      {/* Testimonials Section */}
-      <section className="testimonials">
+      {/* BBEM Section */}
+      <section className="bbem-section">
         <div className="container">
-          <motion.h2
-            className="section-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
-            Here's What Our Clients Say About Us
-          </motion.h2>
-          <div className="testimonials-carousel-wrapper">
-            <button className="carousel-btn carousel-btn-prev" onClick={prevSlide} aria-label="Previous">
-              ‹
-            </button>
-            <div className="testimonials-carousel">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  className="testimonials-slide"
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="testimonials-grid">
-                    {getVisibleTestimonials.map((testimonial, index) => (
-                      <motion.div
-                        key={`${currentSlide}-${index}`}
-                        className="testimonial-card"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: index * 0.1 }}
-                        whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                      >
-                        <div className="testimonial-header">
-                          <div className="testimonial-avatar">
-                            <img src={testimonial.avatarSrc} alt="" />
-                          </div>
-                          <div className="testimonial-info">
-                            <h4>{testimonial.name}</h4>
-                            <p className="testimonial-position">{testimonial.position}</p>
-                            <p className="testimonial-location">
-                              <LocationIcon className="location-icon" />
-                              {testimonial.location}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="testimonial-rating">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <span key={i}>⭐</span>
-                          ))}
-                        </div>
-                        <p className="testimonial-quote">"{testimonial.quote}"</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+          <div className="bbem-stage" ref={bbemStageRef}>
+            <div className="bbem-bubble" aria-hidden="true">
+              <p className="bbem-quote">
+                {BBEM_QUOTE.split('').map((char, index) => (
+                  <span key={index} className="bbem-quote-char">
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+              </p>
             </div>
-            <button className="carousel-btn carousel-btn-next" onClick={nextSlide} aria-label="Next">
-              ›
-            </button>
-          </div>
-          <div className="carousel-dots">
-            {[...Array(totalSlides)].map((_, index) => (
-              <button
-                key={index}
-                className={`carousel-dot ${currentSlide === index ? 'active' : ''}`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+            <img
+              src={asset('bbem.png')}
+              alt="BBEM"
+              className="bbem-image"
+            />
           </div>
         </div>
       </section>
@@ -387,22 +477,9 @@ const Home = React.memo(() => {
               </div>
               <div className="map-info-card">
                 <h3>🕒 Business Hours</h3>
-                <p>Monday - Friday: 9:00 AM - 6:00 PM<br />Saturday: 10:00 AM - 4:00 PM<br />Sunday: Closed</p>
-              </div>
-              <div className="map-info-card">
-                <h3>
-                  <PhoneIcon className="phone-icon" />
-                  Contact
-                </h3>
                 <p>
-                  <span className="map-contact-line">
-                    <PhoneIcon className="phone-icon" />
-                    09175090089
-                  </span>
-                  <span className="map-contact-line">
-                    <EmailIcon className="email-icon" />
-                    olm.joc168@gmail.com
-                  </span>
+                  Monday to Friday: 9:00am - 5:00pm<br />
+                  Saturday and Sunday: Closed
                 </p>
               </div>
             </div>

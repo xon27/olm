@@ -56,7 +56,7 @@ const Apply = () => {
       formDataToSend.append('message', formData.message || 'No message provided')
       
       // Set recipient email (works on free plan)
-      formDataToSend.append('_to', 'olm.joc168@gmail.com')
+      formDataToSend.append('_to', 'olm.jpc168@gmail.com')
       formDataToSend.append('_subject', `Job Application: ${jobTitle}`)
       
       // Upload file to free file hosting service and get download link

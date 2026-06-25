@@ -337,91 +337,6 @@
   margin-right: auto;
 }
 
-.branches-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-}
-
-.branch-card {
-  background: var(--white);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(196, 30, 58, 0.1);
-}
-
-.branch-card:hover {
-  box-shadow: 0 12px 24px rgba(196, 30, 58, 0.15);
-  transform: translateY(-10px);
-}
-
-.branch-map {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 15px 15px 0 0;
-}
-
-.branch-map iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  filter: grayscale(0.2);
-  transition: filter 0.3s ease;
-}
-
-.branch-card:hover .branch-map iframe {
-  filter: grayscale(0);
-}
-
-.branch-flag {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 3rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  z-index: 2;
-}
-
-.branch-content {
-  padding: 2rem;
-}
-
-.branch-content h3 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.branch-city {
-  font-size: 1.1rem;
-  color: var(--primary-color);
-  font-weight: 600;
-  margin-bottom: 1.25rem;
-}
-
-.branch-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.branch-address,
-.branch-phone,
-.branch-email {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
 @media (max-width: 768px) {
   .branches-section {
     padding: 3rem 0;
@@ -430,29 +345,6 @@
   .branches-subtitle {
     font-size: 1.1rem;
     margin-bottom: 2rem;
-  }
-
-  .branches-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .branch-map {
-    height: 250px;
-  }
-
-  .branch-content {
-    padding: 1.5rem;
-  }
-
-  .branch-content h3 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .branch-map {
-    height: 200px;
   }
 }
 

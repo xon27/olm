@@ -11,45 +11,60 @@ const Services = () => {
 
   const countries = [
     {
-      name: 'Taiwan',
-      image: asset('Taiwan.jpg'),
-      description: 'Explore exciting career opportunities in Taiwan, known for its thriving technology and manufacturing sectors.',
+      name: 'Hong Kong',
+      image: asset('Hongkong.jpg'),
+      description: 'Deployment opportunities for Filipino domestic helpers with reputable employers in Hong Kong.',
       jobs: [
-        { title: 'Software Engineer', company: 'Tech Corp', location: 'Taipei', type: 'Full-time' },
-        { title: 'Manufacturing Supervisor', company: 'Industrial Solutions', location: 'Kaohsiung', type: 'Full-time' },
-        { title: 'English Teacher', company: 'Education Plus', location: 'Taichung', type: 'Part-time' },
-        { title: 'Data Analyst', company: 'Digital Innovations', location: 'Taipei', type: 'Full-time' },
-        { title: 'Project Manager', company: 'Global Tech Solutions', location: 'Hsinchu', type: 'Full-time' },
-      ],
-    },
-    {
-      name: 'Japan',
-      image: asset('Japan.jpg'),
-      description: 'Discover diverse job opportunities in Japan, from technology to hospitality and education.',
-      jobs: [
-        { title: 'IT Consultant', company: 'Digital Solutions', location: 'Tokyo', type: 'Full-time' },
-        { title: 'Hotel Manager', company: 'Hospitality Group', location: 'Osaka', type: 'Full-time' },
-        { title: 'Language Instructor', company: 'Global Education', location: 'Kyoto', type: 'Contract' },
+        { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Hong Kong', type: 'Full-time' },
       ],
     },
     {
       name: 'Cyprus',
       image: asset('Cyprus.jpg'),
-      description: 'Find your dream job in Cyprus, a beautiful Mediterranean island with growing business opportunities.',
+      description: 'Legitimate domestic helper placements in Cyprus through OLM International\'s licensed recruitment process.',
       jobs: [
-        { title: 'Financial Analyst', company: 'Finance Hub', location: 'Nicosia', type: 'Full-time' },
-        { title: 'Tourism Coordinator', company: 'Travel Agency', location: 'Limassol', type: 'Full-time' },
-        { title: 'Real Estate Agent', company: 'Property Group', location: 'Paphos', type: 'Full-time' },
+        { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Cyprus', type: 'Full-time' },
       ],
     },
     {
-      name: 'Hong Kong',
+      name: 'Malaysia',
       image: asset('Hongkong.jpg'),
-      description: 'Join the dynamic workforce in Hong Kong, a global financial hub with endless possibilities.',
+      description: 'Overseas employment opportunities for domestic helpers seeking work in Malaysia.',
       jobs: [
-        { title: 'Investment Banker', company: 'Finance Group', location: 'Central', type: 'Full-time' },
-        { title: 'Marketing Manager', company: 'Brand Agency', location: 'Causeway Bay', type: 'Full-time' },
-        { title: 'Legal Advisor', company: 'Law Firm', location: 'Admiralty', type: 'Full-time' },
+        { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Malaysia', type: 'Full-time' },
+      ],
+    },
+    {
+      name: 'Japan',
+      image: asset('Japan.jpg'),
+      description: 'Skilled deployment for welders with trade testing and screening through OLM International.',
+      jobs: [
+        { title: 'Welder', company: 'Licensed Overseas Employer', location: 'Japan', type: 'Full-time' },
+      ],
+    },
+    {
+      name: 'Taiwan',
+      image: asset('Taiwan.jpg'),
+      description: 'Recruitment and placement for caretakers and factory workers bound for Taiwan.',
+      jobs: [
+        { title: 'Caretaker', company: 'Licensed Overseas Employer', location: 'Taiwan', type: 'Full-time' },
+        { title: 'Factory Worker', company: 'Licensed Overseas Employer', location: 'Taiwan', type: 'Full-time' },
+      ],
+    },
+    {
+      name: 'Greece',
+      image: asset('Greece.png'),
+      description: 'Domestic helper opportunities in Greece for qualified and properly screened applicants.',
+      jobs: [
+        { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Greece', type: 'Full-time' },
+      ],
+    },
+    {
+      name: 'Brazil',
+      image: asset('Brazil.png'),
+      description: 'Overseas deployment for domestic helpers with licensed employers in Brazil.',
+      jobs: [
+        { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Brazil', type: 'Full-time' },
       ],
     },
   ]
