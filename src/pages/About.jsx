@@ -100,17 +100,6 @@ const About = () => {
               Guided by professionalism, integrity, and excellence in service, OLM International remains committed to being a trusted partner of both employers and Filipino workers in building successful careers abroad.
               </p>
             </motion.div>
-            <motion.div
-              className="story-image"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="image-wrapper">
-                <img id="story-image" src={asset('olmgallery/16eef158-37d3-44bc-9448-d25fb8c6ea5a.jpg')} alt="Our Team" />
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
