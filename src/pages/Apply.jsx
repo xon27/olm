@@ -56,7 +56,7 @@ const Apply = () => {
       formDataToSend.append('message', formData.message || 'No message provided')
       
       // Set recipient email (works on free plan)
-      formDataToSend.append('_to', 'dixoncarnacete13@gmail.com')
+      formDataToSend.append('_to', 'olm.joc168@gmail.com')
       formDataToSend.append('_subject', `Job Application: ${jobTitle}`)
       
       // Upload file to free file hosting service and get download link
@@ -232,7 +232,7 @@ const Apply = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="09175090089"
                     />
                   </div>
                 </div>

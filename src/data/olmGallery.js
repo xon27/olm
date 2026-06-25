@@ -1,0 +1,41 @@
+const OLM_GALLERY_FILES = [
+  '091697e7-4dd3-468c-b6ed-c90b5c4b3055.jpg',
+  '0a502c5e-beb3-48da-83de-0a29d657d907.jpg',
+  '0d34a098-5a05-4651-ad32-9e821f53abf9.jpg',
+  '0fd30940-d379-40b5-87db-c3ccccb59a4b.jpg',
+  '10a82ab9-4f89-46ca-9e85-3911dd07b903.jpg',
+  '11dfedc8-5c93-4cfc-83f2-44ab31f8b16f.jpg',
+  '12dcf011-5d7c-4949-a490-fbd590296d28.jpg',
+  '16eef158-37d3-44bc-9448-d25fb8c6ea5a.jpg',
+  '22a4550d-31f5-4dc6-ae63-e4490efcacb9.jpg',
+  '23d3a571-aedf-4509-8b63-529c231b7784.jpg',
+  '2752bcdc-3159-4b20-85e1-70e8a1b6560f.jpg',
+  '3ab3afbb-57aa-4107-94d6-cd737132132d.jpg',
+  '3c67ba28-f705-4cfa-8afe-9317336ce9df.jpg',
+  '67a32fce-82e2-4be9-929e-1e6456df7e34.jpg',
+  '7ece8aed-83e5-47e4-8536-4dd5fb47e113.jpg',
+  '8b382bec-519b-454e-a469-b887e32acbc8.jpg',
+  '9595aa4b-643d-464c-b379-5f9b340fd14a.jpg',
+  '9c777756-0049-42b4-a1b6-905cf0c96354.jpg',
+  'aee9ac96-be09-427f-8da7-1b1e0b3c0a85.jpg',
+  'ce9b86dc-afb1-4372-b6be-9ecab9a61134.jpg',
+  'd3844261-d12e-4a36-9e7a-ebfa6d5fd6ca.jpg',
+  'd4d31a9f-d1fb-4ac8-8d59-a5bc87e176e5.jpg',
+  'd560cc4f-82a0-4b51-8f73-5f2735b8e6ef.jpg',
+  'd6b2ecd4-4eac-4769-b250-092ed5a9af90.jpg',
+  'd7bc59b9-bddd-4279-920d-f0bc5abff1a3.jpg',
+  'd80c419b-9b73-46cd-a421-54427738f3cf.jpg',
+  'e764631e-e95b-4b4a-bde8-af239f822a7d.jpg',
+  'eaa6f209-0d19-4f64-b205-f9ffd8586bdd.jpg',
+  'f1af4b08-966b-4822-b02f-82afb83d0b2e.jpg',
+  'f9867dee-6fcd-461b-bd59-c63103c26b60.jpg',
+  'fe16c775-d945-4f35-99a4-0992c990fb32.jpg',
+]
+
+export const galleryPhotos = OLM_GALLERY_FILES.map((file, index) => ({
+  id: index + 1,
+  src: `/olm/olmgallery/${file}`,
+  alt: 'OLM gallery photo',
+}))
+
+export const OLM_LOGO_SRC = '/olm/olm-logo.png'

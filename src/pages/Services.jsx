@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import LocationIcon from '../components/LocationIcon'
 import './Services.css'
 
 const Services = () => {
@@ -38,16 +39,6 @@ const Services = () => {
         { title: 'Financial Analyst', company: 'Finance Hub', location: 'Nicosia', type: 'Full-time' },
         { title: 'Tourism Coordinator', company: 'Travel Agency', location: 'Limassol', type: 'Full-time' },
         { title: 'Real Estate Agent', company: 'Property Group', location: 'Paphos', type: 'Full-time' },
-      ],
-    },
-    {
-      name: 'New Zealand',
-      image: '/olm/NewZealand.jpg',
-      description: 'Experience work-life balance in New Zealand with opportunities across various industries.',
-      jobs: [
-        { title: 'Healthcare Professional', company: 'Health Services', location: 'Auckland', type: 'Full-time' },
-        { title: 'Agricultural Specialist', company: 'Farm Solutions', location: 'Christchurch', type: 'Full-time' },
-        { title: 'Construction Manager', company: 'Build Corp', location: 'Wellington', type: 'Full-time' },
       ],
     },
     {
@@ -157,12 +148,25 @@ const Services = () => {
                 </div>
                 <div className="country-header">
                   <h2>{country.name}</h2>
-                  <span 
-                    className={`expand-icon ${selectedCountry === index ? 'expanded' : ''}`}
+                  <button
+                    type="button"
+                    className={`country-apply-btn ${selectedCountry === index ? 'expanded' : ''}`}
+                    aria-expanded={selectedCountry === index}
+                    aria-label={
+                      selectedCountry === index
+                        ? `Close ${country.name} job listings`
+                        : `View job vacancies in ${country.name}`
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      toggleCountry(index)
+                    }}
                   >
-                    <span className="icon-line icon-line-horizontal"></span>
-                    <span className="icon-line icon-line-vertical"></span>
-                  </span>
+                    <span className="country-apply-btn__text">
+                      {selectedCountry === index ? 'Close' : 'Apply Now'}
+                    </span>
+                    <span className="country-apply-btn__arrow" aria-hidden="true">→</span>
+                  </button>
                 </div>
                 <p className="country-description">{country.description}</p>
                 
@@ -218,7 +222,10 @@ const Services = () => {
                                     </div>
                                     <div className="job-details">
                                       <p className="job-company">{job.company}</p>
-                                      <p className="job-location">{job.location}</p>
+                                      <p className="job-location">
+                                        <LocationIcon className="location-icon" />
+                                        {job.location}
+                                      </p>
                                     </div>
                                     <Link 
                                       to="/apply" 
@@ -262,7 +269,10 @@ const Services = () => {
                             </div>
                             <div className="job-details">
                               <p className="job-company">{job.company}</p>
-                              <p className="job-location">{job.location}</p>
+                              <p className="job-location">
+                                <LocationIcon className="location-icon" />
+                                {job.location}
+                              </p>
                             </div>
                             <Link 
                               to="/apply" 

@@ -1,12 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import LocationIcon from '../components/LocationIcon'
 import './About.css'
 
 const About = () => {
   const stats = [
     { number: '10K+', label: 'Successful Placements' },
     { number: '50+', label: 'Partner Companies' },
-    { number: '5', label: 'Countries' },
+    { number: '4', label: 'Countries' },
     { number: '98%', label: 'Client Satisfaction' },
   ]
 
@@ -14,26 +15,18 @@ const About = () => {
     {
       imageSrc: '/olm/about/mission.png',
       title: 'Our Mission',
-      description: 'To connect talented individuals with exceptional opportunities worldwide, fostering career growth and personal development.',
+      description: 'To provide ethical, efficient, and high-quality recruitment services by connecting qualified Filipino workers with reputable international employers. We are committed to empowering individuals through meaningful overseas employment opportunities while ensuring professionalism, integrity, and compliance with industry standards. Through dedicated support and responsible recruitment practices, we strive to contribute to the growth and success of both our workers and employer partners..',
     },
     {
       imageSrc: '/olm/about/vision.png',
       title: 'Our Vision',
-      description: 'To be the leading global recruitment platform, recognized for excellence, integrity, and transformative career solutions.',
+      description: 'To be a leading and trusted international recruitment agency recognized for excellence, integrity, and commitment to the welfare of Filipino workers. We envision a future where every qualified Filipino has access to legitimate global employment opportunities, enabling them to achieve personal growth, financial stability, and a better quality of life for themselves and their families.',
     },
-    {
-      imageSrc: '/olm/about/value.png',
-      title: 'Our Values',
-      description: 'We are committed to transparency, professionalism, and building lasting relationships with both candidates and employers.',
-    },
+    
+    
   ]
 
-  const team = [
-    { name: 'Expert Consultants', description: 'Our team of experienced recruitment specialists' },
-    { name: 'Global Network', description: 'Extensive connections across multiple countries' },
-    { name: 'Personalized Service', description: 'Tailored approach for each candidate' },
-    { name: '24/7 Support', description: 'Round-the-clock assistance when you need it' },
-  ]
+
 
   return (
     <div className="about-page">
@@ -85,13 +78,25 @@ const About = () => {
             >
               <h2>Our Story</h2>
               <p>
-                At the helm of the Company is <strong>Mrs. Relinda Roxas Malanum</strong>. She has been in the service bureau for over 25-year from 1992 up to present. In support to her operation, her husband <strong>Mr. Rafael C. Malanum</strong> has been actively participating in the background and has delegated the day-to-day operations.
+              OLM International Job Placement Corporation (OLM International) is a Philippine-based recruitment agency established in 1992. The company is duly registered with the Securities and Exchange Commission (SEC) and licensed by the Department of Migrant Workers (DMW) under License No. DMW-086-LB-081722-R.
               </p>
               <p>
-                <strong>Mr. Rafael C. Malanum</strong> has had his own experiences overseas having worked in Saudi Arabia for over 6-year and thus quite aware of the plight of the local expatriates in overseas countries.
+                For more than three decades, OLM International has been committed to connecting qualified Filipino workers with reputable employers abroad, providing overseas employment opportunities that promote professional growth, financial stability, and improved quality of life.
               </p>
               <p>
-                The company has 7 professional staff on it's main office that attend to the day-to-day requirements such as screening, travel bookings, passport facilitations, government liaison, accounting, etc. In addition to this, it has a complement of professional consultants in the different categories of manpower.
+              Currently, OLM International facilitates the deployment of Filipino workers to Hong Kong, Cyprus, Malaysia, Japan, Taiwan, Greece, and Brazil. The agency specializes in the recruitment and placement of Domestic Helpers for Hong Kong, Cyprus, Malaysia, Greece, and Brazil; Welders for Japan; and Factory Workers and Caretakers for Taiwan.
+              </p>
+              <p>
+              Throughout its years of operation, OLM International has successfully deployed skilled, semi-skilled, and professional workers across various industries worldwide. This extensive experience has enabled the company to develop a thorough recruitment and screening process that ensures candidates meet both employer requirements and international employment standards.
+              </p>
+              <p>
+              To maintain the quality of its workforce, OLM International provides comprehensive applicant screening, orientation, and preparation programs. Candidates undergo interviews, skills assessments, and job-specific evaluations to ensure they are well-equipped for their overseas employment. For domestic worker applicants, additional training and orientation are provided to enhance their skills, professionalism, and readiness for international placement.
+              </p>
+              <p>
+              OLM International takes pride in its role in creating opportunities for Filipino workers from all regions of the country. Through continuous recruitment efforts nationwide, the company helps aspiring overseas workers access legitimate employment opportunities while supporting the global demand for skilled and dedicated Filipino talent.
+              </p>
+              <p>
+              Guided by professionalism, integrity, and excellence in service, OLM International remains committed to being a trusted partner of both employers and Filipino workers in building successful careers abroad.
               </p>
             </motion.div>
             <motion.div
@@ -102,7 +107,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="image-wrapper">
-                <img id="story-image" src="/olm/gallery/imgi_27_BNG-3-680x460.jpg" alt="Our Team" />
+                <img id="story-image" src="/olm/olmgallery/16eef158-37d3-44bc-9448-d25fb8c6ea5a.jpg" alt="Our Team" />
               </div>
             </motion.div>
           </div>
@@ -142,34 +147,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="team-section">
-        <div className="container">
-          <motion.h2
-            className="section-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Why Work With Us
-          </motion.h2>
-          <div className="team-grid">
-            {team.map((item, index) => (
-              <motion.div
-                key={index}
-                className="team-card"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <h3>{item.name}</h3>
-                <p>{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       <section className="branches-section">
         <div className="container">
@@ -222,7 +200,10 @@ const About = () => {
                 <div className="branch-content">
                   <h3>{branch.city}</h3>
                   <div className="branch-details">
-                    <p className="branch-address">📍 {branch.address}</p>
+                    <p className="branch-address">
+                      <LocationIcon className="location-icon" />
+                      {branch.address}
+                    </p>
                   </div>
                 </div>
               </motion.div>

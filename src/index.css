@@ -7,6 +7,7 @@
 :root {
   --primary-color: #c41e3a;
   --primary-dark: #a01a2e;
+  --logo-green: #005028;
   --secondary-color: #2563eb;
   --text-dark: #1f2937;
   --text-light: #6b7280;
@@ -56,6 +57,15 @@ code {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.location-icon,
+.phone-icon,
+.email-icon {
+  color: var(--logo-green);
+  font-size: 1em;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 button {

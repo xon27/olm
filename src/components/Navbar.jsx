@@ -60,6 +60,9 @@ const Navbar = React.memo(() => {
           ))}
         </ul>
 
+
+
+
         <button 
           className={`menu-toggle ${isOpen ? 'open' : ''}`}
           onClick={toggleMenu}

@@ -79,6 +79,12 @@
   flex-shrink: 0;
 }
 
+.info-icon .location-icon,
+.info-icon .phone-icon,
+.info-icon .email-icon {
+  font-size: 1.75rem;
+}
+
 .info-details h3 {
   font-size: 1rem;
   font-weight: 600;

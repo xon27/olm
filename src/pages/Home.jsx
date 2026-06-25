@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import LocationIcon from '../components/LocationIcon'
+import PhoneIcon from '../components/PhoneIcon'
+import EmailIcon from '../components/EmailIcon'
 import './Home.css'
 
 const HERO_SLIDES = [
@@ -10,6 +13,15 @@ const HERO_SLIDES = [
   { src: '/olm/hero/hero4.png', alt: 'Factory and industry' },
   { src: '/olm/hero/hero5.png', alt: 'Domestic helpers and caregivers' },
 ]
+
+
+const team = [
+  { name: 'Expert Consultants', description: 'Trusted since 1992, connecting Filipino workers with overseas employers through decades of industry experience.' },
+  { name: 'Global Network', description: 'Fully licensed and compliant with Philippine government regulations for safe and legitimate overseas employment.' },
+  { name: 'Personalized Service', description: 'Partnering with reputable employers to provide reliable and rewarding career opportunities abroad.' },
+  { name: '24/7 Support', description: 'Guiding applicants every step of the way—from screening and documentation to successful deployment' },
+]
+
 
 const Home = React.memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -81,14 +93,6 @@ const Home = React.memo(() => {
       position: 'Financial Analyst',
       avatarSrc: '/olm/about/img3.jpg',
       quote: 'From application to relocation, OLM International guided me every step of the way. Their expertise in international placements is unmatched.',
-      rating: 5,
-    },
-    {
-      name: 'David Kim',
-      location: 'New Zealand',
-      position: 'Healthcare Professional',
-      avatarSrc: '/olm/about/img4.jpg',
-      quote: 'I was skeptical at first, but OLM International exceeded all my expectations. They found me a position that perfectly matches my skills and lifestyle.',
       rating: 5,
     },
     {
@@ -198,7 +202,7 @@ const Home = React.memo(() => {
             <span className="gradient-text"> Job Placement Corporation</span>
           </motion.h1>
           <motion.p className="hero-subtitle" variants={itemVariants}>
-            Connecting talented professionals with exceptional opportunities across Taiwan, Japan, Cyprus, New Zealand, and Hong Kong.
+            Connecting talented professionals with exceptional opportunities across Taiwan, Japan, Cyprus, and Hong Kong.
             Your trusted partner in building a successful career abroad.
           </motion.p>
           <motion.div className="hero-buttons" variants={itemVariants}>
@@ -228,31 +232,32 @@ const Home = React.memo(() => {
       </section>
 
       {/* Features Section */}
-      <section className="features">
+      <section className="team-section">
         <div className="container">
           <motion.h2
             className="section-title"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Why Choose Us
+            Why Choose OLM International?
           </motion.h2>
-          <motion.div
-            className="features-content"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <p>
-              <strong>OLM INTERNATIONAL JOB PLACEMENT CORP.</strong> prides itself in the level of skills it has deployed in other countries. These skills include medical staff, professionals, construction workers, mechanical, electrical, factory worker, and domestic helpers, etc. In the case of Hong Kong, Cyprus, Malaysia deployment, which are primarily domestic helpers, the prospective applicants are given seminars and actual on-the-job training to enhance their skills. This usually takes 2-3 week of actual household chores training. For Taiwan primarily caregivers, caretakers and factory workers. Skilled manpower such as heavy equipment operators, mechanics, aircon technicians, pipefitters, welders, electricians and others are properly screened by the company's Professional Consultants before being interviewed by the Principals and undergo trade testing.
-            </p>
-            <p>
-              <strong>OLM INTERNATIONAL JOB PLACEMENT CORP.</strong> also takes pride in the different activities it has undertaken to allow the local Philippine Labor force to find meaningful and properly compensated jobs abroad to enhance their social and economic standing. The company has gone out of its way to recruit manpower in far flung areas of the country, thereby spreading the manpower export not only from Manila but across the nation as well.
-            </p>
-          </motion.div>
+          <div className="team-grid">
+            {team.map((item, index) => (
+              <motion.div
+                key={index}
+                className="team-card"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -380,7 +385,10 @@ const Home = React.memo(() => {
                           <div className="testimonial-info">
                             <h4>{testimonial.name}</h4>
                             <p className="testimonial-position">{testimonial.position}</p>
-                            <p className="testimonial-location">📍 {testimonial.location}</p>
+                            <p className="testimonial-location">
+                              <LocationIcon className="location-icon" />
+                              {testimonial.location}
+                            </p>
                           </div>
                         </div>
                         <div className="testimonial-rating">
@@ -446,16 +454,34 @@ const Home = React.memo(() => {
             </div>
             <div className="map-info">
               <div className="map-info-card">
-                <h3>📍 Office Address</h3>
-                <p>123 Business Street<br />Global City, 12345<br />United States</p>
+                <h3>
+                  <LocationIcon className="location-icon" />
+                  Office Address
+                </h3>
+                <p>
+                  G/F Vermont Tower J. Nakpil St., cor. Vasquez St.<br />
+                  Brgy. 696 Malate, Manila
+                </p>
               </div>
               <div className="map-info-card">
                 <h3>🕒 Business Hours</h3>
                 <p>Monday - Friday: 9:00 AM - 6:00 PM<br />Saturday: 10:00 AM - 4:00 PM<br />Sunday: Closed</p>
               </div>
               <div className="map-info-card">
-                <h3>📞 Contact</h3>
-                <p>Phone: +1 (555) 123-4567<br />Email: info@globalrecruit.com</p>
+                <h3>
+                  <PhoneIcon className="phone-icon" />
+                  Contact
+                </h3>
+                <p>
+                  <span className="map-contact-line">
+                    <PhoneIcon className="phone-icon" />
+                    09175090089
+                  </span>
+                  <span className="map-contact-line">
+                    <EmailIcon className="email-icon" />
+                    olm.joc168@gmail.com
+                  </span>
+                </p>
               </div>
             </div>
           </motion.div>

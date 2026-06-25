@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import LocationIcon from '../components/LocationIcon'
+import PhoneIcon from '../components/PhoneIcon'
+import EmailIcon from '../components/EmailIcon'
 import './Contact.css'
 
 const Contact = () => {
@@ -41,7 +44,7 @@ const Contact = () => {
       formDataToSend.append('message', formData.message || 'No message provided')
       
       // Set recipient email (works on free plan)
-      formDataToSend.append('_to', 'dixoncarnacete13@gmail.com')
+      formDataToSend.append('_to', 'olm.joc168@gmail.com')
       formDataToSend.append('_subject', 'Contact Form Submission from ' + formData.firstName + ' ' + formData.lastName)
 
       // Send email using Formspree
@@ -96,9 +99,9 @@ const Contact = () => {
   }
 
   const contactInfo = [
-    { icon: '📧', label: 'Email', value: 'info@globalrecruit.com' },
-    { icon: '📞', label: 'Phone', value: '+1 (555) 123-4567' },
-    { icon: '📍', label: 'Address', value: '123 Business Street, Global City' },
+    { icon: <EmailIcon className="email-icon" />, label: 'Email', value: 'olm.joc168@gmail.com' },
+    { icon: <PhoneIcon className="phone-icon" />, label: 'Phone', value: '09175090089' },
+    { icon: <LocationIcon className="location-icon" />, label: 'Address', value: 'G/F Vermont Tower J. Nakpil St., cor. Vasquez St., Brgy. 696 Malate Manila' },
   ]
 
   return (
@@ -202,7 +205,7 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="09175090089"
                     />
                   </div>
                 </div>

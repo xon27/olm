@@ -33,6 +33,10 @@
   padding: 4rem 0;
 }
 
+.gallery-all-photos {
+  margin-top: 0;
+}
+
 .gallery-year-section {
   margin-bottom: 4rem;
 }
@@ -265,42 +269,94 @@
 
 .lightbox-close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: rgba(255, 255, 255, 0.2);
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
   color: var(--white);
-  border: 2px solid var(--white);
-  width: 50px;
-  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  font-size: 2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
   transition: all 0.3s ease;
   z-index: 10;
+}
+
+.lightbox-close svg {
+  display: block;
+  flex-shrink: 0;
 }
 
 .lightbox-close:hover {
   background: var(--white);
   color: var(--text-dark);
-  transform: rotate(90deg);
+  transform: scale(1.05);
 }
 
-.lightbox-content {
-  max-width: 90vw;
-  max-height: 90vh;
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.lightbox-nav svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.lightbox-nav:hover {
+  background: var(--white);
+  color: var(--text-dark);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox-nav-prev {
+  left: 1.5rem;
+}
+
+.lightbox-nav-next {
+  right: 1.5rem;
+}
+
+.lightbox-content {
+  max-width: min(90vw, calc(100vw - 8rem));
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .lightbox-content img {
   max-width: 100%;
-  max-height: 90vh;
+  max-height: calc(90vh - 2.5rem);
   object-fit: contain;
   border-radius: 8px;
+}
+
+.lightbox-counter {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
 /* Responsive Design */
@@ -357,9 +413,35 @@
   .lightbox-close {
     top: 1rem;
     right: 1rem;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
+    width: 42px;
+    height: 42px;
+  }
+
+  .lightbox-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .lightbox-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox-nav svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lightbox-nav-prev {
+    left: 0.75rem;
+  }
+
+  .lightbox-nav-next {
+    right: 0.75rem;
+  }
+
+  .lightbox-content {
+    max-width: calc(100vw - 5.5rem);
   }
 }
 

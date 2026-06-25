@@ -158,98 +158,91 @@
   letter-spacing: -0.01em;
 }
 
-.expand-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
+.country-apply-btn {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(196, 30, 58, 0.08), rgba(196, 30, 58, 0.12));
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(196, 30, 58, 0.15);
-  position: relative;
-  flex-shrink: 0;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  background: transparent;
+  border: 2px solid rgba(196, 30, 58, 0.22);
+  border-radius: 50px;
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition:
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   touch-action: manipulation;
-  will-change: transform, background, border-color, box-shadow;
+  z-index: 2;
 }
 
-.expand-icon:active {
-  transform: scale(0.95);
-}
-
-.expand-icon::before {
+.country-apply-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 50%;
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
-.icon-line {
-  position: absolute;
-  background: var(--primary-color);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px;
-  transform-origin: center;
-  will-change: transform, opacity, width, height;
+.country-apply-btn__text,
+.country-apply-btn__arrow {
+  position: relative;
+  line-height: 1;
 }
 
-.icon-line-horizontal {
-  width: 18px;
-  height: 2px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.country-apply-btn__arrow {
+  font-size: 1.05em;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.icon-line-vertical {
-  width: 2px;
-  height: 18px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.country-apply-btn:hover {
+  color: var(--white);
+  border-color: var(--primary-color);
+  box-shadow: 0 8px 24px rgba(196, 30, 58, 0.28);
+  transform: translateY(-2px);
 }
 
-.expand-icon.expanded .icon-line-vertical {
-  transform: translate(-50%, -50%) rotate(90deg) scale(0);
-  opacity: 0;
-  height: 0;
-  width: 0;
+.country-apply-btn:hover::before {
+  transform: scaleX(1);
 }
 
-.expand-icon.expanded .icon-line-horizontal {
-  width: 20px;
-  transform: translate(-50%, -50%);
+.country-apply-btn:hover .country-apply-btn__arrow {
+  transform: translateX(4px);
 }
 
-.country-card:hover .expand-icon {
-  background: linear-gradient(135deg, rgba(196, 30, 58, 0.15), rgba(196, 30, 58, 0.2));
-  border-color: rgba(196, 30, 58, 0.3);
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
+.country-apply-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.22);
 }
 
-.country-card.expanded .expand-icon {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+.country-apply-btn.expanded {
+  color: var(--white);
   border-color: var(--primary-color);
   box-shadow: 0 4px 16px rgba(196, 30, 58, 0.3);
 }
 
-.country-card.expanded .expand-icon::before {
-  opacity: 1;
+.country-apply-btn.expanded::before {
+  transform: scaleX(1);
 }
 
-.country-card.expanded .icon-line {
-  background: var(--white);
+.country-apply-btn.expanded .country-apply-btn__arrow {
+  transform: rotate(90deg);
+}
+
+.country-apply-btn.expanded:hover .country-apply-btn__arrow {
+  transform: rotate(90deg) translateX(2px);
 }
 
 .country-description {
@@ -516,8 +509,7 @@
 }
 
 .job-location::before {
-  content: '📍';
-  font-size: 1rem;
+  display: none;
 }
 
 .apply-cta {
@@ -605,9 +597,9 @@
     padding: 0 2rem;
   }
 
-  .expand-icon {
-    width: 44px;
-    height: 44px;
+  .country-apply-btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8rem;
   }
 
   .jobs-grid {
@@ -686,23 +678,16 @@
     font-size: 1rem;
   }
 
-  .expand-icon {
-    width: 40px;
-    height: 40px;
+  .country-header {
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
-  .icon-line-horizontal {
-    width: 16px;
-    height: 2px;
-  }
-
-  .icon-line-vertical {
-    width: 2px;
-    height: 16px;
-  }
-
-  .expand-icon.expanded .icon-line-horizontal {
-    width: 18px;
+  .country-apply-btn {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.75rem;
+    width: 100%;
+    justify-content: center;
   }
 
   .jobs-list {

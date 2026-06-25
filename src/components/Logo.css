@@ -21,13 +21,21 @@
 
 /* Responsive sizing for different contexts */
 .navbar .olm-logo .logo-image {
-  max-height: 75px;
+  max-height: 90px;
   max-width: 300px;
 }
 
-.footer .olm-logo .logo-image {
-  max-height: 80px;
-  max-width: 280px;
+.footer .olm-logo .logo-image,
+.footer .olm-logo--footer .logo-image {
+  max-height: 90px;
+  max-width: 290px;
+  border-radius: 5px;
+}
+
+.footer .olm-logo--footer {
+  display: inline-flex;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {

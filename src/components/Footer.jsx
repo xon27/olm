@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import LocationIcon from './LocationIcon'
+import PhoneIcon from './PhoneIcon'
+import EmailIcon from './EmailIcon'
 import './Footer.css'
 
 const Footer = () => {
@@ -11,7 +14,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <Logo />
+            <Logo variant="footer" />
             <p>Your gateway to global career opportunities. Connecting talent with exceptional positions worldwide.</p>
             <div className="social-media">
               <h4>Follow Us</h4>
@@ -56,7 +59,6 @@ const Footer = () => {
               <li>Taiwan</li>
               <li>Japan</li>
               <li>Cyprus</li>
-              <li>New Zealand</li>
               <li>Hong Kong</li>
             </ul>
           </div>
@@ -64,9 +66,18 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Contact</h4>
             <ul>
-              <li>📧 info@globalrecruit.com</li>
-              <li>📞 +1 (555) 123-4567</li>
-              <li>📍 123 Business Street</li>
+              <li className="footer-contact-item">
+                <EmailIcon className="email-icon" />
+                olm.joc168@gmail.com
+              </li>
+              <li className="footer-contact-item">
+                <PhoneIcon className="phone-icon" />
+                09175090089
+              </li>
+              <li className="footer-contact-item">
+                <LocationIcon className="location-icon" />
+                G/F Vermont Tower J. Nakpil St., cor. Vasquez St., Brgy. 696 Malate Manila
+              </li>
             </ul>
           </div>
         </div>

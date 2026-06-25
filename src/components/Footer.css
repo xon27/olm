@@ -29,14 +29,19 @@
 
 .footer-section .olm-logo {
   margin-bottom: 1.5rem;
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .footer-section .olm-logo img {
   width: 100%;
   max-width: 280px;
   height: auto;
+  border-radius: 5px;
+  display: block;
 }
 
 .footer-section h4 {
@@ -106,6 +111,18 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
   transition: color 0.3s ease;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer .location-icon,
+.footer .phone-icon,
+.footer .email-icon {
+  color: var(--white);
 }
 
 .footer-section ul li a {
