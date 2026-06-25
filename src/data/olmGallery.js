@@ -6,7 +6,6 @@ const OLM_GALLERY_FILES = [
   '10a82ab9-4f89-46ca-9e85-3911dd07b903.jpg',
   '11dfedc8-5c93-4cfc-83f2-44ab31f8b16f.jpg',
   '12dcf011-5d7c-4949-a490-fbd590296d28.jpg',
-  '16eef158-37d3-44bc-9448-d25fb8c6ea5a.jpg',
   '22a4550d-31f5-4dc6-ae63-e4490efcacb9.jpg',
   '23d3a571-aedf-4509-8b63-529c231b7784.jpg',
   '2752bcdc-3159-4b20-85e1-70e8a1b6560f.jpg',
