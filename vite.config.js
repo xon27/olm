@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // Temporary: "/olm/" for GitHub Pages. Change back to "/" before Hostinger deploy.
 export default defineConfig({
+  
   base: "/olm/",
   plugins: [react()],
   build: {
