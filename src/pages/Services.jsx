@@ -21,9 +21,10 @@ const Services = () => {
     {
       name: 'Cyprus',
       image: asset('Cyprus.jpg'),
-      description: 'Legitimate domestic helper placements in Cyprus through OLM International\'s licensed recruitment process.',
+      description: 'legitimate domestic helper and skilled workers placements in Cyprus through OLM International\'s licensed recruitment process.',
       jobs: [
         { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Cyprus', type: 'Full-time' },
+        { title: 'Skilled Workers', company: 'Licensed Overseas Employer', location: 'Cyprus', type: 'Full-time' },
       ],
     },
     {
@@ -54,9 +55,10 @@ const Services = () => {
     {
       name: 'Greece',
       image: asset('Greece.png'),
-      description: 'Domestic helper opportunities in Greece for qualified and properly screened applicants.',
+      description: 'Domestic helper and skilled workers opportunities in Greece for qualified and properly screened applicants.',
       jobs: [
         { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Greece', type: 'Full-time' },
+        { title: 'Skilled Workers', company: 'Licensed Overseas Employer', location: 'Greece', type: 'Full-time' },
       ],
     },
     {

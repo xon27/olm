@@ -15,10 +15,10 @@ const HERO_SLIDES = [
 
 
 const team = [
-  { name: 'Expert Consultants', description: 'Trusted since 1992, connecting Filipino workers with overseas employers through decades of industry experience.' },
-  { name: 'Global Network', description: 'Fully licensed and compliant with Philippine government regulations for safe and legitimate overseas employment.' },
-  { name: 'Personalized Service', description: 'Partnering with reputable employers to provide reliable and rewarding career opportunities abroad.' },
-  { name: '24/7 Support', description: 'Guiding applicants every step of the way—from screening and documentation to successful deployment' },
+  { name: '30+ Years of Recruitment Excellence', description: 'Trusted since 1992, connecting Filipino workers with overseas employers through decades of industry experience.' },
+  { name: 'DMW-Licensed and Trusted Agency', description: 'Fully licensed and compliant with Philippine government regulations for safe and legitimate overseas employment.' },
+  { name: 'Quality Overseas Job Opportunities', description: 'Partnering with reputable employers to provide reliable and rewarding career opportunities abroad.' },
+  { name: 'Professional Support from Application to Deployment', description: 'Guiding applicants every step of the way—from screening and documentation to successful deployment' },
 ]
 
 
