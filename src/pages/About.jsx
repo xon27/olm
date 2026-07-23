@@ -85,7 +85,7 @@ const About = () => {
                 For more than three decades, OLM International has been committed to connecting qualified Filipino workers with reputable employers abroad, providing overseas employment opportunities that promote professional growth, financial stability, and improved quality of life.
               </p>
               <p>
-              Currently, OLM International facilitates the deployment of Filipino workers to Hong Kong, Cyprus, Malaysia, Japan, Taiwan, Greece, and Brazil. The agency specializes in the recruitment and placement of Domestic Helpers for Hong Kong, Malaysia and Brazil; Domestic Helpers and Skilled workers for Cyprus and Greece; Welders for Japan.
+              Currently, OLM International facilitates the deployment of Filipino workers to Hong Kong, Cyprus, Malaysia, Japan, Taiwan, Greece, and Brazil. The agency specializes in the recruitment and placement of Domestic Helpers for Hong Kong, Malaysia and Brazil; Domestic Helpers and Skilled workers for Cyprus and Greece; Welders for Japan and Factory Workers and Caretakers for Taiwan.
               </p>
               <p>
               Throughout its years of operation, OLM International has successfully deployed skilled, semi-skilled, and professional workers across various industries worldwide. This extensive experience has enabled the company to develop a thorough recruitment and screening process that ensures candidates meet both employer requirements and international employment standards.
