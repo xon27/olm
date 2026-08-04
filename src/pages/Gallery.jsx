@@ -151,7 +151,6 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.4, delay: Math.min(photoIndex * 0.03, 0.3) }}
-                whileHover={{ scale: 1.05, zIndex: 10 }}
                 onClick={() => openImageModal(photo)}
               >
                 <LazyImage src={photo.src} alt={photo.alt} className="photo-item-img" />

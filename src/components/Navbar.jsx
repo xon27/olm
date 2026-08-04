@@ -42,8 +42,11 @@ const Navbar = React.memo(() => {
     { path: '/contact', label: 'Contact Us' },
   ]
 
+  const isHome = location.pathname === '/'
+  const isTransparent = isHome && !scrolled && !isOpen
+
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isTransparent ? 'navbar--transparent' : ''}`}>
       <div className="nav-container">
         <Logo />
         
@@ -59,9 +62,6 @@ const Navbar = React.memo(() => {
             </li>
           ))}
         </ul>
-
-
-
 
         <button 
           className={`menu-toggle ${isOpen ? 'open' : ''}`}

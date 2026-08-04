@@ -3,16 +3,40 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.97);
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar.scrolled {
   background: rgba(255, 255, 255, 0.98);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.navbar--transparent {
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.navbar.navbar--transparent .nav-links li a {
+  color: var(--white);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.navbar.navbar--transparent .nav-links li a::after {
+  background: var(--white);
+}
+
+.navbar.navbar--transparent .nav-links li a:hover,
+.navbar.navbar--transparent .nav-links li a.active {
+  color: var(--white);
+}
+
+.navbar.navbar--transparent .menu-toggle span {
+  background: var(--white);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
 .nav-container {
@@ -81,7 +105,7 @@
   width: 25px;
   height: 3px;
   background: var(--text-dark);
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
   border-radius: 2px;
 }
 

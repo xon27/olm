@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import LocationIcon from '../components/LocationIcon'
@@ -13,6 +13,32 @@ const HERO_SLIDES = [
   { src: asset('hero/hero5.png'), alt: 'Domestic helpers and caregivers' },
 ]
 
+const HERO_FADE = {
+  opacity: { duration: 0.9, ease: [0.45, 0, 0.55, 1] },
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+}
 
 const team = [
   { name: '30+ Years of Recruitment Excellence', description: 'Trusted since 1992, connecting Filipino workers with overseas employers through decades of industry experience.' },
@@ -21,152 +47,47 @@ const team = [
   { name: 'Professional Support from Application to Deployment', description: 'Guiding applicants every step of the way—from screening and documentation to successful deployment' },
 ]
 
+const destinations = [
+  { name: 'Hong Kong', region: 'Asia', focus: 'Domestic Helper', image: asset('Hongkong.jpg') },
+  { name: 'Cyprus', region: 'Europe', focus: 'Domestic & Skilled', image: asset('Cyprus.jpg') },
+  { name: 'Malaysia', region: 'Asia', focus: 'Domestic Helper', image: asset('Malaysia.jpg') },
+  { name: 'Japan', region: 'Asia', focus: 'Welder', image: asset('Japan.jpg') },
+  { name: 'Taiwan', region: 'Asia', focus: 'Caretaker & Factory', image: asset('Taiwan.jpg') },
+  { name: 'Greece', region: 'Europe', focus: 'Domestic & Skilled', image: asset('Greece.png') },
+  { name: 'Brazil', region: 'South America', focus: 'Domestic Helper', image: asset('Brazil.png') },
+]
+
+const purposeItems = [
+  {
+    id: '01',
+    title: 'Our Mission',
+    description:
+      'To provide ethical, efficient, and high-quality recruitment services by connecting qualified Filipino workers with reputable international employers. We are committed to empowering individuals through meaningful overseas employment opportunities while ensuring professionalism, integrity, and compliance with industry standards.',
+  },
+  {
+    id: '02',
+    title: 'Our Vision',
+    description:
+      'To be a leading and trusted international recruitment agency recognized for excellence, integrity, and commitment to the welfare of Filipino workers—where every qualified Filipino has access to legitimate global employment opportunities.',
+  },
+  {
+    id: '03',
+    title: 'Our Values',
+    description:
+      'We uphold integrity, professionalism, and excellence in every placement. Guided by responsible recruitment practices, we put the welfare of Filipino workers and the trust of our employer partners at the center of everything we do.',
+  },
+]
+
 
 const Home = React.memo(() => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [heroIndex, setHeroIndex] = useState(0)
-  const [slidesToShow, setSlidesToShow] = useState(3)
 
   useEffect(() => {
     const id = setInterval(() => {
       setHeroIndex((i) => (i + 1) % HERO_SLIDES.length)
-    }, 5000)
+    }, 6000)
     return () => clearInterval(id)
   }, [])
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  }
-
-  const floatingVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      },
-    },
-  }
-
-  const testimonials = [
-    {
-      name: 'Maria Santos',
-      location: 'Taiwan',
-      position: 'Software Engineer',
-      avatarSrc: asset('about/img1.jpg'),
-      quote: 'OLM International helped me find my dream job in Taiwan. Their team was professional, supportive, and made the entire process smooth. I couldn\'t be happier!',
-      rating: 5,
-    },
-    {
-      name: 'John Chen',
-      location: 'Japan',
-      position: 'IT Consultant',
-      avatarSrc: asset('about/img2.jpg'),
-      quote: 'The best recruitment agency I\'ve worked with. They understood my career goals and matched me with the perfect opportunity in Tokyo. Highly recommended!',
-      rating: 5,
-    },
-    {
-      name: 'Sarah Johnson',
-      location: 'Cyprus',
-      position: 'Financial Analyst',
-      avatarSrc: asset('about/img3.jpg'),
-      quote: 'From application to relocation, OLM International guided me every step of the way. Their expertise in international placements is unmatched.',
-      rating: 5,
-    },
-    {
-      name: 'Lisa Wong',
-      location: 'Hong Kong',
-      position: 'Marketing Manager',
-      avatarSrc: asset('about/img5.jpg'),
-      quote: 'Professional, efficient, and caring. The team at OLM International truly cares about their clients\' success. Thank you for changing my career!',
-      rating: 5,
-    },
-    {
-      name: 'Michael Brown',
-      location: 'Japan',
-      position: 'Language Instructor',
-      avatarSrc: asset('about/img1.jpg'),
-      quote: 'The support I received was incredible. OLM International didn\'t just find me a job, they helped me build a new life in Japan. Forever grateful!',
-      rating: 5,
-    },
-  ]
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setSlidesToShow(1)
-      } else if (window.innerWidth <= 1024) {
-        setSlidesToShow(2)
-      } else {
-        setSlidesToShow(3)
-      }
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const totalSlides = Math.ceil(testimonials.length / slidesToShow)
-
-  useEffect(() => {
-    if (currentSlide >= totalSlides) {
-      setCurrentSlide(0)
-    }
-  }, [totalSlides, currentSlide])
-
-  useEffect(() => {
-    if (!isAutoPlaying) return
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides)
-    }, 5000) // Auto-slide every 5 seconds
-
-    return () => clearInterval(interval)
-  }, [totalSlides, isAutoPlaying])
-
-  const nextSlide = () => {
-    setIsAutoPlaying(false)
-    setCurrentSlide((prev) => (prev + 1) % totalSlides)
-    setTimeout(() => setIsAutoPlaying(true), 10000) // Resume auto-play after 10 seconds
-  }
-
-  const prevSlide = () => {
-    setIsAutoPlaying(false)
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides)
-    setTimeout(() => setIsAutoPlaying(true), 10000) // Resume auto-play after 10 seconds
-  }
-
-  const goToSlide = (index) => {
-    setIsAutoPlaying(false)
-    setCurrentSlide(index)
-    setTimeout(() => setIsAutoPlaying(true), 10000) // Resume auto-play after 10 seconds
-  }
-
-  const getVisibleTestimonials = useMemo(() => {
-    const start = currentSlide * slidesToShow
-    return testimonials.slice(start, start + slidesToShow)
-  }, [currentSlide, slidesToShow])
 
   return (
     <div className="home">
@@ -174,7 +95,7 @@ const Home = React.memo(() => {
       <section className="hero">
         <div className="hero-background">
           <div className="hero-carousel" aria-hidden="true">
-            <AnimatePresence mode="wait">
+            <AnimatePresence initial={false}>
               <motion.img
                 key={HERO_SLIDES[heroIndex].src}
                 className="hero-carousel__img"
@@ -183,11 +104,10 @@ const Home = React.memo(() => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.45 }}
+                transition={HERO_FADE}
               />
             </AnimatePresence>
           </div>
-          <div className="gradient-overlay" />
         </div>
 
         <motion.div
@@ -214,11 +134,7 @@ const Home = React.memo(() => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          className="scroll-indicator"
-          variants={floatingVariants}
-          animate="animate"
-        >
+        <div className="scroll-indicator">
           <div className="mouse">
             <div className="wheel"></div>
           </div>
@@ -227,7 +143,7 @@ const Home = React.memo(() => {
             <span></span>
             <span></span>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Features Section */}
@@ -260,6 +176,102 @@ const Home = React.memo(() => {
         </div>
       </section>
 
+      {/* Destinations Section */}
+      <section className="destinations-section">
+        <div className="destinations-atmosphere" aria-hidden="true" />
+        <div className="container">
+          <motion.div
+            className="destinations-header"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="destinations-title">Countries We Connect You To</h2>
+            <p className="destinations-subtitle">
+              Trusted placement pathways across Asia, Europe, and South America.
+            </p>
+          </motion.div>
+
+          <div className="destinations-grid">
+            {destinations.map((destination, index) => (
+              <motion.div
+                key={destination.name}
+                className={`destination-panel ${index === 0 ? 'destination-panel--featured' : ''}`}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, delay: Math.min(index * 0.06, 0.3) }}
+              >
+                <Link to="/services" className="destination-panel__link" aria-label={`View jobs in ${destination.name}`}>
+                  <img
+                    src={destination.image}
+                    alt={destination.name}
+                    className="destination-panel__image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="destination-panel__veil" />
+                  <div className="destination-panel__content">
+                    <span className="destination-panel__region">{destination.region}</span>
+                    <h3 className="destination-panel__name">{destination.name}</h3>
+                    <span className="destination-panel__focus">{destination.focus}</span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            className="destinations-cta"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <Link to="/services" className="destinations-cta__link">
+              Explore Job Vacancies
+              <span aria-hidden="true">→</span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mission, Vision & Values */}
+      <section className="purpose-section">
+        <div className="container">
+          <motion.div
+            className="purpose-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55 }}
+          >
+            <h2 className="purpose-title">Mission, Vision & Values</h2>
+            <p className="purpose-subtitle">
+              The principles that guide every placement and partnership.
+            </p>
+          </motion.div>
+
+          <div className="purpose-grid">
+            {purposeItems.map((item, index) => (
+              <motion.article
+                key={item.id}
+                className="purpose-item"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.24) }}
+              >
+                <span className="purpose-item__index" aria-hidden="true">{item.id}</span>
+                <h3 className="purpose-item__title">{item.title}</h3>
+                <p className="purpose-item__text">{item.description}</p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Map Section */}
       <section className="map-section">
         <div className="container">
@@ -278,7 +290,7 @@ const Home = React.memo(() => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
           >
             <div className="map-container">
               <iframe
@@ -320,8 +332,8 @@ const Home = React.memo(() => {
         <div className="container">
           <motion.div
             className="cta-content"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
           >
@@ -340,4 +352,3 @@ const Home = React.memo(() => {
 Home.displayName = 'Home'
 
 export default Home
-

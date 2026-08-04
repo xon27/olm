@@ -4,6 +4,8 @@ import BranchesGrid from '../components/BranchesGrid'
 import { asset } from '../utils/assets'
 import './About.css'
 
+const STORY_BG = asset('olmgallery/fe16c775-d945-4f35-99a4-0992c990fb32.jpg')
+
 const About = () => {
   const stats = [
     { number: '10K+', label: 'Successful Placements' },
@@ -11,23 +13,6 @@ const About = () => {
     { number: '7', label: 'Countries' },
     { number: '98%', label: 'Client Satisfaction' },
   ]
-
-  const values = [
-    {
-      imageSrc: asset('about/mission.png'),
-      title: 'Our Mission',
-      description: 'To provide ethical, efficient, and high-quality recruitment services by connecting qualified Filipino workers with reputable international employers. We are committed to empowering individuals through meaningful overseas employment opportunities while ensuring professionalism, integrity, and compliance with industry standards. Through dedicated support and responsible recruitment practices, we strive to contribute to the growth and success of both our workers and employer partners..',
-    },
-    {
-      imageSrc: asset('about/vision.png'),
-      title: 'Our Vision',
-      description: 'To be a leading and trusted international recruitment agency recognized for excellence, integrity, and commitment to the welfare of Filipino workers. We envision a future where every qualified Filipino has access to legitimate global employment opportunities, enabling them to achieve personal growth, financial stability, and a better quality of life for themselves and their families.',
-    },
-    
-    
-  ]
-
-
 
   return (
     <div className="about-page">
@@ -67,7 +52,11 @@ const About = () => {
         </div>
       </section>
 
-      <section className="story-section">
+      <section
+        className="story-section"
+        style={{ '--story-bg-image': `url(${STORY_BG})` }}
+      >
+        <div className="story-section__bg" aria-hidden="true" />
         <div className="container">
           <div className="story-content">
             <motion.div
@@ -103,41 +92,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      <section className="values-section">
-        <div className="container">
-          <motion.h2
-            className="section-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Mission, Vision & Values
-          </motion.h2>
-          <div className="values-grid">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                className="value-card"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              >
-                <div className="value-icon">
-                  <img src={value.imageSrc} alt="" width={96} height={96} />
-                </div>
-                <h3>{value.title}</h3>
-                <p>{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      
 
       <section className="branches-section">
         <div className="container">
