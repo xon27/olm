@@ -50,9 +50,10 @@
 }
 
 .countries-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  align-items: start;
 }
 
 .country-card {
@@ -61,11 +62,10 @@
   padding: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   border: 1px solid rgba(196, 30, 58, 0.1);
   position: relative;
   overflow: hidden;
-  will-change: transform, box-shadow, border-color;
 }
 
 .country-image-wrapper {
@@ -83,7 +83,7 @@
 }
 
 .country-card:hover .country-image {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .country-overlay {
@@ -118,16 +118,15 @@
 }
 
 .country-card:hover {
-  box-shadow: 0 12px 24px rgba(196, 30, 58, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 20px rgba(196, 30, 58, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
   border-color: rgba(196, 30, 58, 0.3);
-  transform: translateY(-8px) scale(1.01);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate3d(0, -4px, 0);
 }
 
 .country-card.expanded {
   border-color: rgba(196, 30, 58, 0.3);
   box-shadow: 0 12px 24px rgba(196, 30, 58, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: none;
 }
 
 .country-header {
@@ -256,9 +255,8 @@
 }
 
 .jobs-list {
-  margin-top: 2.5rem;
-  padding: 2.5rem;
-  padding-top: 2.5rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem 2rem 2rem;
   border-top: 2px solid rgba(196, 30, 58, 0.1);
   position: relative;
   overflow: hidden;
@@ -275,9 +273,9 @@
 }
 
 .jobs-list h3 {
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   color: var(--text-dark);
   letter-spacing: -0.01em;
   display: flex;
@@ -295,14 +293,8 @@
 
 .jobs-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-}
-
-@media (max-width: 1024px) {
-  .jobs-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 }
 
 .jobs-carousel-wrapper {
@@ -337,20 +329,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3);
   flex-shrink: 0;
   z-index: 2;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  will-change: transform, box-shadow, background;
 }
 
 .job-carousel-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
-  background: linear-gradient(135deg, var(--primary-dark), #8b1525);
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(196, 30, 58, 0.35);
 }
 
 .job-carousel-btn:active {
@@ -372,29 +362,27 @@
   border: none;
   background: rgba(196, 30, 58, 0.3);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease, background 0.2s ease;
   padding: 0;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  will-change: transform, background, width;
 }
 
 .job-carousel-dot:hover {
   background: rgba(196, 30, 58, 0.5);
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .job-carousel-dot:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 .job-carousel-dot.active {
   background: var(--primary-color);
-  width: 32px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(196, 30, 58, 0.4);
-  transform: scale(1);
+  transform: scaleX(2.2);
 }
 
 .job-card {
@@ -402,13 +390,12 @@
   padding: 2rem;
   border-radius: 16px;
   border: 1px solid rgba(196, 30, 58, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
-  will-change: transform, box-shadow, border-color;
 }
 
 .job-card::before {
@@ -429,10 +416,9 @@
 
 .job-card:hover {
   background: var(--white);
-  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px) translateX(4px) scale(1.02);
+  box-shadow: 0 8px 18px rgba(196, 30, 58, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translate3d(0, -3px, 0);
   border-color: rgba(196, 30, 58, 0.25);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .job-header {
@@ -574,6 +560,7 @@
   }
 
   .countries-grid {
+    grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 

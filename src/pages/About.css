@@ -59,8 +59,28 @@
 }
 
 .story-section {
+  position: relative;
   padding: 5rem 0;
   background: var(--white);
+  overflow: hidden;
+}
+
+.story-section__bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--story-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.story-section .container,
+.story-content {
+  position: relative;
+  z-index: 1;
 }
 
 .story-content {
@@ -149,7 +169,7 @@
   border-radius: 15px;
   text-align: center;
   box-shadow: var(--shadow);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.25s ease;
 }
 
 .value-card:hover {

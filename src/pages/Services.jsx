@@ -29,7 +29,7 @@ const Services = () => {
     },
     {
       name: 'Malaysia',
-      image: asset('Hongkong.jpg'),
+      image: asset('Malaysia.jpg'),
       description: 'Overseas employment opportunities for domestic helpers seeking work in Malaysia.',
       jobs: [
         { title: 'Domestic Helper', company: 'Licensed Overseas Employer', location: 'Malaysia', type: 'Full-time' },
@@ -82,7 +82,7 @@ const Services = () => {
     }
   }
 
-  const jobsPerSlide = 3
+  const jobsPerSlide = 2
   const getTotalSlides = (jobs) => Math.ceil(jobs.length / jobsPerSlide)
 
   const getVisibleJobs = (jobs, countryIndex) => {
@@ -191,16 +191,9 @@ const Services = () => {
                 {selectedCountry === index && (
                   <motion.div
                     className="jobs-list"
-                    initial={{ opacity: 0, height: 0, y: -20 }}
-                    animate={{ opacity: 1, height: 'auto', y: 0 }}
-                    exit={{ opacity: 0, height: 0, y: -20 }}
-                    transition={{ 
-                      duration: 0.5,
-                      ease: [0.4, 0, 0.2, 1],
-                      opacity: { duration: 0.4 },
-                      height: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
-                      y: { duration: 0.4 }
-                    }}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <h3>💼 Available Positions</h3>
